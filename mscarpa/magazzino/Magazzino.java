@@ -18,7 +18,7 @@ public class Magazzino implements Serializable {
 
 
     private Magazzino() throws TipoInvalido {
-            TIPODIBASE=new TipoGenerico("Componenti Generico", "Tipo universale che racchiude tutti i componenti");
+        TIPODIBASE=new TipoGenerico("Generico","Tipo generico di componenti");
         this.componenti = new ArrayList();
         this.tipi = new ArrayList();
         tipi.add(TIPODIBASE);

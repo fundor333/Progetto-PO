@@ -7,7 +7,6 @@ package mscarpa.magazzino;
 
 import mscarpa.exception.TipoInvalido;
 
-import java.io.Serializable;
 
 /**
  * @author matteoscarpa

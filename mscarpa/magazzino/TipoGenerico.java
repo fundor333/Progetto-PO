@@ -13,8 +13,8 @@ public class TipoGenerico implements Serializable,GenericoElemento {
     //TODO Fare sotto forma di Singeton
 
 
-    TipoGenerico(String nomet, String ann) throws TipoInvalido {
-        if(nomet.isEmpty())
+    TipoGenerico(String nomet, String ann) throws TipoInvalido,NullPointerException {
+        if(nomet.isEmpty()==true)
             throw new TipoInvalido();
         this.nometipo = nomet;
         this.annotazioni = ann;
