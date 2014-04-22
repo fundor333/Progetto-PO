@@ -15,6 +15,7 @@ public class Componenti implements Serializable,GenericoElemento {
     private Double prezzo;
     private TipoComponenti tipo;
 
+
     public Componenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoComponenti t) {
         this.tipo = t;
         this.nome = nome;

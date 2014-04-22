@@ -29,7 +29,7 @@ public class GestoreComponenti extends JDialog {
 
     private void pulsanti() {
         ok.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
+            public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
             }
         });
@@ -40,6 +40,7 @@ public class GestoreComponenti extends JDialog {
                 ag.setVisible(true);
             }
         });
+        setPulsanti.add(aggiungiElemento);
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(2, 1));
     }
