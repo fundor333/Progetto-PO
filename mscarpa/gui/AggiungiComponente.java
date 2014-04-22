@@ -90,12 +90,16 @@ public class AggiungiComponente extends JDialog {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName(tipoT.getToolTipText()));
-                } catch (ErroreMancanoComponenti err) {
+                }
+                catch (ErroreMancanoComponenti err) {
                     JOptionPane.showMessageDialog(null, err.getMessage());
                 } catch (ComponenteGiaPresente err) {
                     JOptionPane.showMessageDialog(null, err.getMessage());
                 } catch (ComponenteCreate err) {
                     JOptionPane.showMessageDialog(null, err.getMessage());
+                }
+                catch (NumberFormatException err){
+                    JOptionPane.showMessageDialog(null,"Il numero inserito non è valido");
                 }
                 finally {
                     parent.refreshTable();

@@ -13,10 +13,10 @@ public class Componenti implements Serializable,GenericoElemento {
     private String posizione;
     private Integer quantita;
     private Double prezzo;
-    private TipoComponenti tipo;
+    private TipoGenerico tipo;
 
 
-    public Componenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoComponenti t) {
+    public Componenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoGenerico t) {
         this.tipo = t;
         this.nome = nome;
         this.posizione = posizione;
@@ -50,7 +50,7 @@ public class Componenti implements Serializable,GenericoElemento {
         return prezzo;
     }
 
-    public TipoComponenti getTipo() {
+    public TipoGenerico getTipo() {
         return tipo;
     }
 

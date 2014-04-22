@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class Magazzino implements Serializable {
 
-    private final TipoComponenti TIPODIBASE;
+    private final TipoGenerico TIPODIBASE;
     private static Magazzino RIFERIMENTO;
-    private List<TipoComponenti> tipi;
+    private List<TipoGenerico> tipi;
     private List<Componenti> componenti;
 
 
     private Magazzino() throws TipoInvalido {
-            TIPODIBASE=new TipoComponenti("Componenti Generico", "Tipo universale che racchiude tutti i componenti", null);
+            TIPODIBASE=new TipoGenerico("Componenti Generico", "Tipo universale che racchiude tutti i componenti");
         this.componenti = new ArrayList();
         this.tipi = new ArrayList();
         tipi.add(TIPODIBASE);
@@ -45,9 +45,9 @@ public class Magazzino implements Serializable {
     *
     * @param name Nome del tipo cercato
     */
-    public TipoComponenti getTipeWithName(String name) {
+    public TipoGenerico getTipeWithName(String name) {
         try {
-            return this.tipi.get(this.tipi.indexOf(new TipoComponenti(name, "", null)));
+            return this.tipi.get(this.tipi.indexOf(new TipoComponenti(name,"")));
         } catch (TipoInvalido tipoInvalido) {return null;}
     }
 
@@ -64,9 +64,12 @@ public class Magazzino implements Serializable {
      * @param t               Tipo di componente
      */
 
-    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoComponenti t) throws ErroreMancanoComponenti, ComponenteGiaPresente, ComponenteCreate {
+    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoGenerico t) throws ErroreMancanoComponenti, ComponenteGiaPresente, ComponenteCreate {
         Componenti c;
-        c = new Componenti(nome, posizione, codiceaBarre, caratteristiche, quantita, prezzo, t);
+        try{c = new Componenti(nome, posizione, codiceaBarre, caratteristiche, quantita, prezzo, t);}
+        catch (NullPointerException n){
+            c=new Componenti(nome,posizione,codiceaBarre,caratteristiche,quantita,prezzo,TIPODIBASE);
+        }
         if (this.componenti.contains(c)) /*Se per caso l'ogetto creato è già esistente viene semplicemente aumentata la quantita*/ {
             try {
                 /*Se la modifica della quantità del prodotto lo porta ad avere una quantità pari o inferiore a zero viene elminato il riferimento all'oggetto*/
@@ -112,7 +115,7 @@ public class Magazzino implements Serializable {
         return this.componenti;
     }
 
-    public List<TipoComponenti> getTipi() {
+    public List<TipoGenerico> getTipi() {
         return tipi;
     }
 
@@ -127,7 +130,7 @@ public class Magazzino implements Serializable {
         return null;
     }
 
-    public TipoComponenti getTIPODIBASE() {
+    public TipoGenerico getTIPODIBASE() {
         return TIPODIBASE;
     }
 }

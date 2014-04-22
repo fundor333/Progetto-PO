@@ -12,54 +12,34 @@ import java.io.Serializable;
 /**
  * @author matteoscarpa
  */
-public class TipoComponenti implements Serializable,GenericoElemento {
+public class TipoComponenti extends TipoGenerico {
 
-    private final String nometipo;
-    private final String annotazioni;
-    private final TipoComponenti padre;
+    private final TipoGenerico padre;
 
-    TipoComponenti(String nometipo, String annotazioni, TipoComponenti padre) throws TipoInvalido {
-        if(nometipo.equalsIgnoreCase(annotazioni) && nometipo=="")
-            throw new TipoInvalido();
-        this.nometipo = nometipo;
-        this.annotazioni = annotazioni;
+    TipoComponenti(String nometipo, String annotazioni) throws TipoInvalido {
+        super(nometipo, annotazioni);
+        this.padre=Magazzino.getMagazzino().getTIPODIBASE();
+    }
+
+    public TipoComponenti(String nometipo, String annotazioni, TipoGenerico padre) throws TipoInvalido {
+        super(nometipo, annotazioni);
         this.padre = padre;
     }
 
-    public String getNometipo() {
-        return nometipo;
+    public TipoGenerico getPadre(){return padre;}
+
+    private boolean equals(TipoGenerico o){
+        if ( o instanceof TipoComponenti)
+            return equals((TipoComponenti)o);
+        else
+            return false;
     }
 
-    public String getAnnotazioni() {
-        return annotazioni;
+    private boolean equals(TipoComponenti o){
+        if (super.equals(o) && o.padre==this.padre)
+            return true;
+        else
+            return false;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TipoComponenti that = (TipoComponenti) o;
-
-        if (!nometipo.equals(that.nometipo)) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = nometipo.hashCode();
-        result = 31 * result + annotazioni.hashCode();
-        return result;
-    }
-
-    public String[] getCampi(){
-        return new String[]{this.getNometipo(),this.getAnnotazioni(),this.padre.getNometipo()};
-    }
-
-    @Override
-    public String[] getNomeCampi() {
-        return new String[]{"Nome del Tipo", "Annotazioni", "Supertipo"};
-    }
 }
