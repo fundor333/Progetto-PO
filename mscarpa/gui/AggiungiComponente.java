@@ -1,9 +1,17 @@
 package mscarpa.gui;
 
+import mscarpa.exception.ComponenteCreate;
+import mscarpa.exception.ComponenteGiaPresente;
+import mscarpa.exception.ErroreMancanoComponenti;
+import mscarpa.magazzino.Componenti;
+import mscarpa.magazzino.Magazzino;
 import mscarpa.magazzino.TipoComponenti;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by matteoscarpa on 19/04/14.
@@ -11,10 +19,12 @@ import java.awt.*;
 public class AggiungiComponente extends JDialog {
 
     private JButton ok = new JButton("OK");
+    private Magazzino M=Magazzino.getMagazzino();
 
     private GestoreComponenti parent;
 
     private JPanel labels = new JPanel();
+    private String[] nomiTipi;
 
     private void setLabels(){
         labels.add(nomeL);
@@ -54,7 +64,7 @@ public class AggiungiComponente extends JDialog {
     private JLabel prezzoL = new JLabel("Prezzo");
     private JTextField prezzoT =new JTextField();
     private JLabel tipoL = new JLabel("Tipo");
-    private JTextField tipoT =new JTextField();
+    private JComboBox tipoT;
 
     public AggiungiComponente (GestoreComponenti parent){
         super(parent,"Nuovo Componente");
@@ -70,10 +80,37 @@ public class AggiungiComponente extends JDialog {
     }
 
     private void inizializzaElementi() {
+        setTipoT();
         setLabels();
         setTextField();
 
-        //TODO inserire l'actionListener per i due elementi necessari. Bisogna anche gestire le eccezioni
+        ok.addActionListener(new ActionListener() {
+            @Override
+            //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName(tipoT.getToolTipText()));
+                } catch (ErroreMancanoComponenti err) {
+                    JOptionPane.showMessageDialog(null, err.getMessage());
+                } catch (ComponenteGiaPresente err) {
+                    JOptionPane.showMessageDialog(null, err.getMessage());
+                } catch (ComponenteCreate err) {
+                    JOptionPane.showMessageDialog(null, err.getMessage());
+                }
+                finally {
+                    parent.refreshTable();
+                }
+            }
+        });
+    }
+
+    private void setTipoT(){
+        nomiTipi=new String[Magazzino.getMagazzino().getTipi().size()];
+        for(int i=0;i< Magazzino.getMagazzino().getTipi().size();i++) {
+            this.nomiTipi[i]=Magazzino.getMagazzino().getTipi().get(i).getNometipo();
+        }
+        tipoT=new JComboBox(nomiTipi);
+        setSize(500, 300);
     }
 
 }
