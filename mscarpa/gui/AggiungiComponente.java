@@ -3,15 +3,12 @@ package mscarpa.gui;
 import mscarpa.exception.ComponenteCreate;
 import mscarpa.exception.ComponenteGiaPresente;
 import mscarpa.exception.ErroreMancanoComponenti;
-import mscarpa.magazzino.Componenti;
 import mscarpa.magazzino.Magazzino;
-import mscarpa.magazzino.TipoComponenti;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  * Created by matteoscarpa on 19/04/14.
@@ -98,8 +95,11 @@ public class AggiungiComponente extends JDialog {
                 } catch (ComponenteCreate err) {
                     JOptionPane.showMessageDialog(null, err.getMessage());
                 }
-                catch (NumberFormatException err){
-                    JOptionPane.showMessageDialog(null,"Il numero inserito non è valido");
+                catch (NumberFormatException err) {
+                    JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
+                }
+                catch (NullPointerException np){
+                    JOptionPane.showMessageDialog(null,"Null pointer");
                 }
                 finally {
                     parent.refreshTable();
