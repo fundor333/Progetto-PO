@@ -1,8 +1,7 @@
 package mscarpa.gui;
 
-import mscarpa.magazzino.Componenti;
-import mscarpa.magazzino.GenericoElemento;
-import mscarpa.magazzino.Magazzino;
+import mscarpa.exception.TipoInvalido;
+import mscarpa.magazzino.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,24 +11,29 @@ import java.awt.event.ActionListener;
 /**
  * Created by matteoscarpa on 18/04/14.
  */
-public class GestoreComponenti extends JDialog {
+public class GestoreTipi extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
     private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
 
-    public GestoreComponenti(JFrame mainFrame) {
+    public GestoreTipi(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
-        GenericoElemento g=new Componenti("nome","posizione",0,"cara",0,0,Magazzino.getMagazzino().getTIPODIBASE());
-        Tabella tcom=new Tabella<Componenti>(Magazzino.getMagazzino().getComponenti(),g.getNomeCampi());
+        try{
+        GenericoElemento g=new TipoComponenti("nome","generico testo",Magazzino.getMagazzino().getTIPODIBASE());
+        Tabella tcom=new Tabella<TipoGenerico>(Magazzino.getMagazzino().getTipi(),g.getNomeCampi());
         this.tabella = tcom;
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
         setSize(700, 320);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setModal(true);
+        setModal(true);}
+        catch (TipoInvalido tipoInvalido) {
+            tipoInvalido.printStackTrace();
+        }
+
     }
 
     private void pulsanti() {
@@ -41,7 +45,7 @@ public class GestoreComponenti extends JDialog {
         aggiungiElemento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AggiungiComponente ag = new AggiungiComponente(GestoreComponenti.this);
+                AggiungiTipi ag = new AggiungiTipi(GestoreTipi.this);
                 ag.setVisible(true);
                 refreshTable();
             }
@@ -54,7 +58,7 @@ public class GestoreComponenti extends JDialog {
     }
 
     public void refreshTable() {
-        tabella.aggiorna(Magazzino.getMagazzino().getComponenti());
+        tabella.aggiorna(Magazzino.getMagazzino().getTipi());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(701, 320);

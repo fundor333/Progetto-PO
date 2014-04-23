@@ -22,7 +22,6 @@ public class Wellcome extends Frame {
 
         final JPanel nord=new JPanel();
         final JPanel exit=new JPanel();
-        final JPanel center=new JPanel();
 
         final int ALTEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2.5);
         final int LARGHEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
@@ -31,6 +30,7 @@ public class Wellcome extends Frame {
         final JFrame mainFrame = new JFrame("Benvenuto");
         /*Dichiarazione degli altri elementi presenti*/
         final JButton gestoreComponenti = new JButton("Magazzino");
+        final JButton gestoreTipi = new JButton("Tipi di componenti");
         final JButton salvaStato = new JButton(("Chiudi"));
 
 
@@ -42,27 +42,33 @@ public class Wellcome extends Frame {
             }
         });
 
+        gestoreTipi.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        JDialog gm = new GestoreTipi(mainFrame);
+                        gm.setVisible(true);
+                    }
+                });
+
         salvaStato.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
                 System.exit(0);
             }
         });
-//TODO aggiungere il secondo gestore (quello dei tipi)
 
         /*Comandi di visualizzazione elementi*/
         nord.add(gestoreComponenti);
-        nord.setLayout(new GridLayout(1, 1));
-        center.setLayout(new GridLayout(2, 2));
+        nord.add(gestoreTipi);
+        nord.setLayout(new GridLayout(1, 2));
         exit.add(salvaStato);
         exit.setLayout(new GridLayout(1, 1));
 
         mainFrame.add(nord);
-        mainFrame.add(center);
         mainFrame.add(exit);
 
         /*Comandi di impostazione di visualizzazione*/
-        mainFrame.setLayout(new GridLayout(3,1));
+        mainFrame.setLayout(new GridLayout(3,2));
         mainFrame.setSize(LARGHEZZA, ALTEZZA);
         mainFrame.setLocation(ALTEZZA_REL, LARGHEZZA_REL);
         mainFrame.setVisible(true);

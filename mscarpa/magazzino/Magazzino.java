@@ -52,7 +52,7 @@ public class Magazzino implements Serializable {
         componenti.add(nome,posizione,codiceaBarre,caratteristiche,quantita,prezzo,t);
     }
 
-    public void addTipiComponenti(String nometipo, String annotazioni, TipoComponenti tipeWithName) throws TipoGiaPresente, TipoInvalido {
+    public void addTipiComponenti(String nometipo, String annotazioni, TipoGenerico tipeWithName) throws TipoGiaPresente, TipoInvalido {
         tipi.add(nometipo,annotazioni,tipeWithName);
     }
 
