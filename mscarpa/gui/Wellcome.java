@@ -37,9 +37,7 @@ public class Wellcome extends Frame {
         /*Comandi di Listener*/
         gestoreComponenti.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                GenericoElemento g=new Componenti("nome","posizione",0,"cara",0,0,Magazzino.getMagazzino().getTIPODIBASE());
-                Tabella tComponenti=new Tabella<Componenti>(magazzino.getComponenti(),g.getNomeCampi());
-                JDialog gm = new GestoreComponenti(mainFrame,tComponenti);
+                JDialog gm = new GestoreComponenti(mainFrame);
                 gm.setVisible(true);
             }
         });
