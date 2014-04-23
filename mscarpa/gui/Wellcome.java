@@ -61,7 +61,7 @@ public class Wellcome extends Frame {
         mainFrame.add(nord);
 
         /*Comandi di impostazione di visualizzazione*/
-        mainFrame.setLayout(new GridLayout(1,1));
+        mainFrame.setLayout(new GridLayout(1, 1));
         mainFrame.setSize(LARGHEZZA, ALTEZZA);
         mainFrame.setLocation(ALTEZZA_REL, LARGHEZZA_REL);
         mainFrame.setVisible(true);

@@ -31,23 +31,7 @@ public class AggiungiTipi extends JDialog {
     private JTextField caratteristicheT = new JTextField();
     private JLabel supertipoL = new JLabel("Tipo");
     private JComboBox supertipoT;
-
-    private void setLabels() {
-        labels.add(nomeL);
-        labels.add(caratteristicheL);
-        labels.add(supertipoL);
-        labels.setLayout(new GridLayout(7, 1));
-    }
-
     private JPanel textField = new JPanel();
-
-    private void setTextField() {
-        textField.add(nomeT);
-        textField.add(caratteristicheT);
-        textField.add(supertipoT);
-        textField.setLayout(new GridLayout(7, 1));
-    }
-
 
     public AggiungiTipi(GestoreTipi parent) {
         super(parent, "Nuovo Componente");
@@ -60,6 +44,20 @@ public class AggiungiTipi extends JDialog {
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
+    }
+
+    private void setLabels() {
+        labels.add(nomeL);
+        labels.add(caratteristicheL);
+        labels.add(supertipoL);
+        labels.setLayout(new GridLayout(7, 1));
+    }
+
+    private void setTextField() {
+        textField.add(nomeT);
+        textField.add(caratteristicheT);
+        textField.add(supertipoT);
+        textField.setLayout(new GridLayout(7, 1));
     }
 
     private void inizializzaElementi() {

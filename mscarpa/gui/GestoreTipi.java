@@ -1,11 +1,14 @@
 package mscarpa.gui;
 
-import mscarpa.exception.*;
-import mscarpa.magazzino.*;
+import mscarpa.exception.TipoInvalido;
+import mscarpa.magazzino.GenericoElemento;
+import mscarpa.magazzino.Magazzino;
+import mscarpa.magazzino.Tipo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GestoreTipi extends JDialog {
     private Tabella tabella;
@@ -13,7 +16,7 @@ public class GestoreTipi extends JDialog {
     private JButton ok = new JButton("Salva");
     private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
-    private Magazzino magazzino=Magazzino.getMagazzino();
+    private Magazzino magazzino = Magazzino.getMagazzino();
 
     public GestoreTipi(JFrame mainFrame) {
         super(mainFrame, "Tipi di componenti");
