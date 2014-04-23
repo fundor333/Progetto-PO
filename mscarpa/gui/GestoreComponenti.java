@@ -54,9 +54,10 @@ public class GestoreComponenti extends JDialog {
     }
 
     public void refreshTable() {
-        GenericoElemento g=new Componenti("nome","posizione",0,"cara",0,0,Magazzino.getMagazzino().getTIPODIBASE());
-        tabella=new Tabella<Componenti>(Magazzino.getMagazzino().getComponenti(),g.getNomeCampi());
+        tabella.aggiorna(Magazzino.getMagazzino().getComponenti());
+        remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(700, 320);
+        setSize(701,320);//Non togliere perchè altrimenti non si aggiorna la finestra
     }
 }
