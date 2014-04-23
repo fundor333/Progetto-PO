@@ -1,6 +1,5 @@
 package mscarpa.magazzino;
 
-import mscarpa.exception.ComponenteCreate;
 import mscarpa.exception.ComponenteGiaPresente;
 import mscarpa.exception.ComponenteTerminato;
 import mscarpa.exception.ErroreMancanoComponenti;
@@ -39,21 +38,13 @@ public class ContenitoreComponenti implements Serializable{
             } catch (ComponenteTerminato ex) {
                 this.lista.remove(c);
             } catch (ErroreMancanoComponenti erroreMancanoComponenti) {
-                erroreMancanoComponenti.printStackTrace();
+                JOptionPane.showMessageDialog(null,erroreMancanoComponenti.getMessage());
             } catch (ComponenteGiaPresente componenteGiaPresente) {
-                componenteGiaPresente.printStackTrace();
+                JOptionPane.showMessageDialog(null,componenteGiaPresente.getMessage());
             }
         } else /*Aggiunge l'oggetto alla lista*/ {
-            this.lista.add(c);
-            for (int i = 0; i < c.getCampi().length; i++) {
-                System.out.println(c.getCampi()[i]);
-            }
-            try {
-                throw new ComponenteCreate();
-            } catch (ComponenteCreate componenteCreate) {
-                JOptionPane.showMessageDialog(null,componenteCreate.getMessage());
-            }
-
+                this.lista.add(c);
+                JOptionPane.showMessageDialog(null,"Il componente è stato creato correttamente");
         }
         Magazzino.saveState();
     }

@@ -54,21 +54,6 @@ public class Componenti implements GenericoElemento {
         return tipo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + (int) (this.codiceaBarre ^ (this.codiceaBarre >>> 32));
-        return hash;
-    }
-
-    /*Due componenti sono uguali se e solo se hanno lo stesso codice a barre*/
-    @Override
-    public boolean equals(Object obj) {
-if (obj instanceof Componenti)
-    return equals((Componenti) obj);
-        else
-    return false;
-    }
     private boolean equals(Componenti c){
         if (c.codiceaBarre==this.codiceaBarre)
             return true;
@@ -76,6 +61,22 @@ if (obj instanceof Componenti)
             return false;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Componenti that = (Componenti) o;
+
+        if (!codiceaBarre.equals(that.codiceaBarre)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return codiceaBarre.hashCode();
+    }
 
     @Override
     public String[] getCampi() {
