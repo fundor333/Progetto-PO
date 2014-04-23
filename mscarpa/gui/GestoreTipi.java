@@ -22,7 +22,7 @@ public class GestoreTipi extends JDialog {
         super(mainFrame, "Tipi di componenti");
         try {
             GenericoElemento g = new TipoComponenti("nome", "generico testo", Magazzino.getMagazzino().getTIPODIBASE());
-            Tabella tcom = new Tabella<TipoGenerico>(Magazzino.getMagazzino().getTipi(), g.getNomeCampi());
+            Tabella tcom = new Tabella<TipoComponenti>(Magazzino.getMagazzino().getTipiComponenti(), g.getNomeCampi());
             this.tabella = tcom;
             pulsanti();
             refreshTable();

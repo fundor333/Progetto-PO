@@ -63,4 +63,13 @@ public class ContenitoreTipo implements Serializable {
     public ArrayList<TipoGenerico> getList() {
         return lista;
     }
+
+    public List<TipoComponenti> getListComponenti() {
+        ArrayList<TipoComponenti> risultato=new ArrayList<TipoComponenti>();
+        for (int i=0; i<this.lista.size() ;i++){
+            if (lista.get(i) instanceof TipoComponenti)
+                risultato.add((TipoComponenti)lista.get(i));
+        }
+        return risultato;
+    }
 }

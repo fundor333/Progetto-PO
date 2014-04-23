@@ -74,4 +74,6 @@ public class Magazzino implements Serializable {
     public List<TipoGenerico> getTipi(){
         return tipi.getList();
     }
+
+    public List<TipoComponenti>getTipiComponenti(){return tipi.getListComponenti();}
 }
