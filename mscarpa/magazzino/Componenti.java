@@ -64,14 +64,16 @@ public class Componenti implements GenericoElemento {
     /*Due componenti sono uguali se e solo se hanno lo stesso codice a barre*/
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+if (obj instanceof Componenti)
+    return equals((Componenti) obj);
+        else
+    return false;
+    }
+    private boolean equals(Componenti c){
+        if (c.codiceaBarre==this.codiceaBarre)
+            return true;
+        else
             return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Componenti other = (Componenti) obj;
-        return this.codiceaBarre == other.codiceaBarre;
     }
 
 
