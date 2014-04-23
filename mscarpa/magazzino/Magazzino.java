@@ -2,9 +2,7 @@ package mscarpa.magazzino;
 
 import mscarpa.exception.*;
 
-import javax.swing.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +28,6 @@ public class Magazzino implements Serializable {
                     RIFERIMENTO = new Magazzino();
                 } catch (TipoInvalido tipoInvalido) {}
         }
-
         return RIFERIMENTO;
     }
 
@@ -43,16 +40,16 @@ public class Magazzino implements Serializable {
     *
     * @param name Nome del tipo cercato
     */
-    public TipoGenerico getTipeWithName(String name){
+    public Tipo getTipeWithName(String name){
         return tipi.getWithName(name);
     }
 
 
-    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoGenerico t){
+    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t){
         componenti.add(nome,posizione,codiceaBarre,caratteristiche,quantita,prezzo,t);
     }
 
-    public void addTipiComponenti(String nometipo, String annotazioni, TipoGenerico tipeWithName) throws TipoGiaPresente, TipoInvalido {
+    public void addTipiComponenti(String nometipo, String annotazioni, Tipo tipeWithName) throws TipoGiaPresente, TipoInvalido {
         tipi.add(nometipo,annotazioni,tipeWithName);
     }
 
@@ -61,19 +58,11 @@ public class Magazzino implements Serializable {
         return componenti.getList();
     }
 
-
-    public Componenti getComponentiWithName(String s) {
-        return componenti.getWithName(s);
-    }
-
-
-    public TipoGenerico getTIPODIBASE() {
+    public Tipo getTIPODIBASE() {
         return this.tipi.Generico();
     }
 
-    public List<TipoGenerico> getTipi(){
+    public List<Tipo> getTipi(){
         return tipi.getList();
     }
-
-    public List<TipoComponenti>getTipiComponenti(){return tipi.getListComponenti();}
 }

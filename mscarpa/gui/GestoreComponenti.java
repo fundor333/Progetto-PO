@@ -1,13 +1,11 @@
 package mscarpa.gui;
 
-import mscarpa.magazzino.Componenti;
-import mscarpa.magazzino.GenericoElemento;
-import mscarpa.magazzino.Magazzino;
+import mscarpa.exception.*;
+import mscarpa.magazzino.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GestoreComponenti extends JDialog {
     private Tabella tabella;
@@ -15,12 +13,12 @@ public class GestoreComponenti extends JDialog {
     private JButton ok = new JButton("Salva");
     private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
+    private Magazzino magazzino=Magazzino.getMagazzino();
 
     public GestoreComponenti(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
-        GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, Magazzino.getMagazzino().getTIPODIBASE());
-        Tabella tcom = new Tabella<Componenti>(Magazzino.getMagazzino().getComponenti(), g.getNomeCampi());
-        this.tabella = tcom;
+        GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, magazzino.getTIPODIBASE());
+        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), g.getNomeCampi());
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
@@ -51,7 +49,7 @@ public class GestoreComponenti extends JDialog {
     }
 
     public void refreshTable() {
-        tabella.aggiorna(Magazzino.getMagazzino().getComponenti());
+        tabella.aggiorna(magazzino.getComponenti());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(701, 320);

@@ -1,15 +1,11 @@
 package mscarpa.gui;
 
-import mscarpa.exception.TipoInvalido;
-import mscarpa.magazzino.GenericoElemento;
-import mscarpa.magazzino.Magazzino;
-import mscarpa.magazzino.TipoComponenti;
-import mscarpa.magazzino.TipoGenerico;
+import mscarpa.exception.*;
+import mscarpa.magazzino.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class GestoreTipi extends JDialog {
     private Tabella tabella;
@@ -17,13 +13,13 @@ public class GestoreTipi extends JDialog {
     private JButton ok = new JButton("Salva");
     private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
+    private Magazzino magazzino=Magazzino.getMagazzino();
 
     public GestoreTipi(JFrame mainFrame) {
         super(mainFrame, "Tipi di componenti");
         try {
-            GenericoElemento g = new TipoComponenti("nome", "generico testo", Magazzino.getMagazzino().getTIPODIBASE());
-            Tabella tcom = new Tabella<TipoComponenti>(Magazzino.getMagazzino().getTipiComponenti(), g.getNomeCampi());
-            this.tabella = tcom;
+            GenericoElemento g = new Tipo("nome", "generico testo", magazzino.getTIPODIBASE());
+            this.tabella = new Tabella<Tipo>(magazzino.getTipi(), g.getNomeCampi());
             pulsanti();
             refreshTable();
             add(setPulsanti, BorderLayout.SOUTH);
@@ -33,7 +29,6 @@ public class GestoreTipi extends JDialog {
         } catch (TipoInvalido tipoInvalido) {
             tipoInvalido.printStackTrace();
         }
-
     }
 
     private void pulsanti() {
@@ -56,10 +51,9 @@ public class GestoreTipi extends JDialog {
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(1, 3));
     }
-    // matricola lemMATTEO 841883
 
     public void refreshTable() {
-        tabella.aggiorna(Magazzino.getMagazzino().getTipi());
+        tabella.aggiorna(magazzino.getTipi());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(701, 320);

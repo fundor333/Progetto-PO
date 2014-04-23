@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class Wellcome extends Frame {
 
     /*Set delle dimensioni della finestra*/
-    public final static int LARGHEZZA = 300;
+    public final static int LARGHEZZA = 200;
     public final static int ALTEZZA = 200;
     private final static Magazzino magazzino = Magazzino.getMagazzino();
 
@@ -18,7 +18,6 @@ public class Wellcome extends Frame {
         /*Set della posizione relativa della finestra*/
 
         final JPanel nord = new JPanel();
-        final JPanel exit = new JPanel();
 
         final int ALTEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2.5);
         final int LARGHEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
@@ -56,15 +55,13 @@ public class Wellcome extends Frame {
         /*Comandi di visualizzazione elementi*/
         nord.add(gestoreComponenti);
         nord.add(gestoreTipi);
-        nord.setLayout(new GridLayout(1, 2));
-        exit.add(salvaStato);
-        exit.setLayout(new GridLayout(1, 1));
+        nord.add(salvaStato);
+        nord.setLayout(new GridLayout(3, 1));
 
         mainFrame.add(nord);
-        mainFrame.add(exit);
 
         /*Comandi di impostazione di visualizzazione*/
-        mainFrame.setLayout(new GridLayout(3, 2));
+        mainFrame.setLayout(new GridLayout(1,1));
         mainFrame.setSize(LARGHEZZA, ALTEZZA);
         mainFrame.setLocation(ALTEZZA_REL, LARGHEZZA_REL);
         mainFrame.setVisible(true);
