@@ -34,6 +34,13 @@ public class Tabella<E  extends GenericoElemento> extends JPanel {
                 }
             }
         }
+        catch (NullPointerException np){
+            o=new Object[1][s.length];
+            for (int i=0;i<s.length;i++)
+            {
+                o[0][i]="";
+            }
+        }
         catch (IndexOutOfBoundsException e){
             o=new Object[1][s.length];
             for (int i=0;i<s.length;i++)
@@ -46,7 +53,7 @@ public class Tabella<E  extends GenericoElemento> extends JPanel {
 
     private void inizializza(List<E> elementi){
         Object[][] elementiTabella;
-        super.removeAll();
+        //super.removeAll();
         elementiTabella=adattatore(elementi,etichette);
         matrice = new JTable(elementiTabella,etichette){
             public boolean isCellEditable(int rowIndex, int colIndex) {

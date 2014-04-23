@@ -14,6 +14,7 @@ class DataBaseManager implements Serializable {
             ObjectOutputStream output = new ObjectOutputStream(file);
             output.writeObject(s);
             output.close();
+            System.out.println("Salvato");
             return true;
         } catch (Exception e) {
             return false;
@@ -27,6 +28,7 @@ class DataBaseManager implements Serializable {
             ObjectInputStream input = new ObjectInputStream(file);
             o = input.readObject();
             input.close();
+            System.out.println("Caricato");
             return o;
         } catch (Exception e) {
             return null;
