@@ -46,13 +46,7 @@ public class GestoreComponenti extends JDialog {
                 refreshTable();
             }
         });
-        refresh.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        refreshTable();
-                    }
-                }
-        );
+        refreshTable();
         setPulsanti.add(aggiungiElemento);
         setPulsanti.add(refresh);
         setPulsanti.add(ok);
