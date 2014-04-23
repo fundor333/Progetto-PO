@@ -2,6 +2,7 @@ package mscarpa.magazzino;
 
 import mscarpa.exception.*;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +46,13 @@ public class Magazzino implements Serializable {
     *
     * @param name Nome del tipo cercato
     */
-    public TipoGenerico getTipeWithName(String name) {
+    public TipoGenerico getTipeWithName(String name){
         try {
-            return this.tipi.get(this.tipi.indexOf(new TipoComponenti(name,"")));
-        } catch (TipoInvalido tipoInvalido) {return null;}
+            return this.tipi.get(this.tipi.indexOf(new TipoComponenti(name,"something",Magazzino.getMagazzino().getTIPODIBASE())));
+        } catch (TipoInvalido tipoInvalido) {
+            JOptionPane.showMessageDialog(null,"Impossibile da visualizzare");
+            return null;
+        }
     }
 
     /**

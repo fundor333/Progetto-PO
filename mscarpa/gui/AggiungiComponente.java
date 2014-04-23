@@ -86,7 +86,7 @@ public class AggiungiComponente extends JDialog {
             //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName(tipoT.getToolTipText()));
+                    Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName((String)(tipoT.getSelectedItem())));
                 }
                 catch (ErroreMancanoComponenti err) {
                     JOptionPane.showMessageDialog(null, err.getMessage());
@@ -97,9 +97,6 @@ public class AggiungiComponente extends JDialog {
                 }
                 catch (NumberFormatException err) {
                     JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
-                }
-                catch (NullPointerException np){
-                    JOptionPane.showMessageDialog(null,"Null pointer");
                 }
                 finally {
                     parent.refreshTable();

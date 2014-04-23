@@ -14,7 +14,7 @@ public class TipoGenerico implements Serializable,GenericoElemento {
 
 
     TipoGenerico(String nomet, String ann) throws TipoInvalido,NullPointerException {
-        if(nomet.isEmpty()==true)
+        if(nomet==null)
             throw new TipoInvalido();
         this.nometipo = nomet;
         this.annotazioni = ann;
