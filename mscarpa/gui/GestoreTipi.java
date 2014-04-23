@@ -1,16 +1,16 @@
 package mscarpa.gui;
 
 import mscarpa.exception.TipoInvalido;
-import mscarpa.magazzino.*;
+import mscarpa.magazzino.GenericoElemento;
+import mscarpa.magazzino.Magazzino;
+import mscarpa.magazzino.TipoComponenti;
+import mscarpa.magazzino.TipoGenerico;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by matteoscarpa on 18/04/14.
- */
 public class GestoreTipi extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
@@ -19,18 +19,18 @@ public class GestoreTipi extends JDialog {
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
 
     public GestoreTipi(JFrame mainFrame) {
-        super(mainFrame, "Magazzino");
-        try{
-        GenericoElemento g=new TipoComponenti("nome","generico testo",Magazzino.getMagazzino().getTIPODIBASE());
-        Tabella tcom=new Tabella<TipoGenerico>(Magazzino.getMagazzino().getTipi(),g.getNomeCampi());
-        this.tabella = tcom;
-        pulsanti();
-        refreshTable();
-        add(setPulsanti, BorderLayout.SOUTH);
-        setSize(700, 320);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setModal(true);}
-        catch (TipoInvalido tipoInvalido) {
+        super(mainFrame, "Tipi di componenti");
+        try {
+            GenericoElemento g = new TipoComponenti("nome", "generico testo", Magazzino.getMagazzino().getTIPODIBASE());
+            Tabella tcom = new Tabella<TipoGenerico>(Magazzino.getMagazzino().getTipi(), g.getNomeCampi());
+            this.tabella = tcom;
+            pulsanti();
+            refreshTable();
+            add(setPulsanti, BorderLayout.SOUTH);
+            setSize(700, 320);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setModal(true);
+        } catch (TipoInvalido tipoInvalido) {
             tipoInvalido.printStackTrace();
         }
 
@@ -54,8 +54,9 @@ public class GestoreTipi extends JDialog {
         setPulsanti.add(aggiungiElemento);
         setPulsanti.add(refresh);
         setPulsanti.add(ok);
-        setPulsanti.setLayout(new GridLayout(1,3));
+        setPulsanti.setLayout(new GridLayout(1, 3));
     }
+    // matricola lemMATTEO 841883
 
     public void refreshTable() {
         tabella.aggiorna(Magazzino.getMagazzino().getTipi());

@@ -9,9 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by matteoscarpa on 18/04/14.
- */
 public class GestoreComponenti extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
@@ -21,8 +18,8 @@ public class GestoreComponenti extends JDialog {
 
     public GestoreComponenti(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
-        GenericoElemento g=new Componenti("nome","posizione",0,"cara",0,0,Magazzino.getMagazzino().getTIPODIBASE());
-        Tabella tcom=new Tabella<Componenti>(Magazzino.getMagazzino().getComponenti(),g.getNomeCampi());
+        GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, Magazzino.getMagazzino().getTIPODIBASE());
+        Tabella tcom = new Tabella<Componenti>(Magazzino.getMagazzino().getComponenti(), g.getNomeCampi());
         this.tabella = tcom;
         pulsanti();
         refreshTable();
@@ -50,7 +47,7 @@ public class GestoreComponenti extends JDialog {
         setPulsanti.add(aggiungiElemento);
         setPulsanti.add(refresh);
         setPulsanti.add(ok);
-        setPulsanti.setLayout(new GridLayout(1,3));
+        setPulsanti.setLayout(new GridLayout(1, 3));
     }
 
     public void refreshTable() {
