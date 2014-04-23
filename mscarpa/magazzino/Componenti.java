@@ -13,10 +13,10 @@ public class Componenti implements GenericoElemento {
     private String posizione;
     private Integer quantita;
     private Double prezzo;
-    private TipoGenerico tipo;
+    private Tipo tipo;
 
 
-    public Componenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoGenerico t) {
+    public Componenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t) {
         this.tipo = t;
         this.nome = nome;
         this.posizione = posizione;
@@ -50,7 +50,7 @@ public class Componenti implements GenericoElemento {
         return prezzo;
     }
 
-    public TipoGenerico getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 

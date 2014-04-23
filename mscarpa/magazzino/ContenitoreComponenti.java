@@ -28,7 +28,7 @@ public class ContenitoreComponenti implements Serializable{
         return lista.contains(c);
     }
 
-    public void add(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, TipoGenerico t) {
+    public void add(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t) {
         Componenti c = new Componenti(nome, posizione, codiceaBarre, caratteristiche, quantita, prezzo, t);
         if (this.lista.contains(c)) /*Se per caso l'ogetto creato è già esistente viene semplicemente aumentata la quantita*/ {
             try {

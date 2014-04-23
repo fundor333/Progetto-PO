@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GestoreComponenti extends JDialog {
+public class GestoreTipi extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
@@ -15,16 +15,20 @@ public class GestoreComponenti extends JDialog {
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
     private Magazzino magazzino=Magazzino.getMagazzino();
 
-    public GestoreComponenti(JFrame mainFrame) {
-        super(mainFrame, "Magazzino");
-        GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, magazzino.getTIPODIBASE());
-        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), g.getNomeCampi());
-        pulsanti();
-        refreshTable();
-        add(setPulsanti, BorderLayout.SOUTH);
-        setSize(700, 320);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setModal(true);
+    public GestoreTipi(JFrame mainFrame) {
+        super(mainFrame, "Tipi di componenti");
+        try {
+            GenericoElemento g = new Tipo("nome", "generico testo", magazzino.getTIPODIBASE());
+            this.tabella = new Tabella<Tipo>(magazzino.getTipi(), g.getNomeCampi());
+            pulsanti();
+            refreshTable();
+            add(setPulsanti, BorderLayout.SOUTH);
+            setSize(700, 320);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            setModal(true);
+        } catch (TipoInvalido tipoInvalido) {
+            tipoInvalido.printStackTrace();
+        }
     }
 
     private void pulsanti() {
@@ -36,7 +40,7 @@ public class GestoreComponenti extends JDialog {
         aggiungiElemento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AggiungiComponente ag = new AggiungiComponente(GestoreComponenti.this);
+                AggiungiTipi ag = new AggiungiTipi(GestoreTipi.this);
                 ag.setVisible(true);
                 refreshTable();
             }
@@ -49,7 +53,7 @@ public class GestoreComponenti extends JDialog {
     }
 
     public void refreshTable() {
-        tabella.aggiorna(magazzino.getComponenti());
+        tabella.aggiorna(magazzino.getTipi());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(701, 320);

@@ -1,5 +1,7 @@
 package mscarpa.gui;
 
+import mscarpa.exception.TipoGiaPresente;
+import mscarpa.exception.TipoInvalido;
 import mscarpa.magazzino.Magazzino;
 
 import javax.swing.*;
@@ -10,25 +12,30 @@ import java.awt.event.ActionListener;
 /**
  * Created by matteoscarpa on 19/04/14.
  */
-public class AggiungiComponente extends JDialog {
+public class AggiungiTipi extends JDialog {
 
     private Magazzino magazzino = Magazzino.getMagazzino();
     private JButton ok = new JButton("OK");
     private Magazzino M = Magazzino.getMagazzino();
 
-    private GestoreComponenti parent;
+    private GestoreTipi parent;
 
     private JPanel labels = new JPanel();
     private String[] nomiTipi;
 
+
+    // Le varie enuple testo e campo di inserimento, una enupla per ogni attributo del componente
+    private JLabel nomeL = new JLabel("Nome:");
+    private JTextField nomeT = new JTextField();
+    private JLabel caratteristicheL = new JLabel("Carratteristiche");
+    private JTextField caratteristicheT = new JTextField();
+    private JLabel supertipoL = new JLabel("Tipo");
+    private JComboBox supertipoT;
+
     private void setLabels() {
         labels.add(nomeL);
-        labels.add(codiceaBarreL);
         labels.add(caratteristicheL);
-        labels.add(posizioneL);
-        labels.add(quantitaL);
-        labels.add(prezzoL);
-        labels.add(tipoL);
+        labels.add(supertipoL);
         labels.setLayout(new GridLayout(7, 1));
     }
 
@@ -36,32 +43,13 @@ public class AggiungiComponente extends JDialog {
 
     private void setTextField() {
         textField.add(nomeT);
-        textField.add(codiceaBarreT);
         textField.add(caratteristicheT);
-        textField.add(posizioneT);
-        textField.add(quantitaT);
-        textField.add(prezzoT);
-        textField.add(tipoT);
+        textField.add(supertipoT);
         textField.setLayout(new GridLayout(7, 1));
     }
 
-    // Le varie enuple testo e campo di inserimento, una enupla per ogni attributo del componente
-    private JLabel nomeL = new JLabel("Nome:");
-    private JTextField nomeT = new JTextField();
-    private JLabel codiceaBarreL = new JLabel("Codice a Barre");
-    private JTextField codiceaBarreT = new JTextField();
-    private JLabel caratteristicheL = new JLabel("Carratteristiche");
-    private JTextField caratteristicheT = new JTextField();
-    private JLabel posizioneL = new JLabel("Posizione");
-    private JTextField posizioneT = new JTextField();
-    private JLabel quantitaL = new JLabel("Quantità");
-    private JTextField quantitaT = new JTextField();
-    private JLabel prezzoL = new JLabel("Prezzo");
-    private JTextField prezzoT = new JTextField();
-    private JLabel tipoL = new JLabel("Tipo");
-    private JComboBox tipoT;
 
-    public AggiungiComponente(GestoreComponenti parent) {
+    public AggiungiTipi(GestoreTipi parent) {
         super(parent, "Nuovo Componente");
         this.parent = parent;
         inizializzaElementi();
@@ -84,10 +72,13 @@ public class AggiungiComponente extends JDialog {
             //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName((String) (tipoT.getSelectedItem())));
+                    Magazzino.getMagazzino().addTipiComponenti(nomeT.getText(), caratteristicheT.getText(), M.getTipeWithName((String) supertipoT.getSelectedItem()));
                     parent.refreshTable();
                 } catch (NumberFormatException err) {
                     JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
+                } catch (TipoGiaPresente tipoGiaPresente) {
+                } catch (TipoInvalido tipoInvalido) {
+                    JOptionPane.showMessageDialog(null, tipoInvalido.getMessage());
                 } finally {
                     parent.refreshTable();
                 }
@@ -103,7 +94,7 @@ public class AggiungiComponente extends JDialog {
             System.out.println(magazzino.getTipi().get(i).getNometipo());
             this.nomiTipi[i] = magazzino.getTipi().get(i).getNometipo();
         }
-        tipoT = new JComboBox(nomiTipi);
+        supertipoT = new JComboBox(nomiTipi);
         setSize(500, 300);
     }
 

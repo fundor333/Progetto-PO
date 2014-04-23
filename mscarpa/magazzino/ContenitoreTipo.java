@@ -6,15 +6,11 @@ import mscarpa.exception.TipoInvalido;
 import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by matteoscarpa on 23/04/14.
- */
 public class ContenitoreTipo implements Serializable {
     private static final ContenitoreTipo ref = new ContenitoreTipo();
-    private ArrayList<TipoGenerico> lista= new ArrayList<TipoGenerico>();
-    private TipoGenerico BASE=new TipoGenerico("Generico", "Generico tipo di elemento");
+    private ArrayList<Tipo> lista= new ArrayList<Tipo>();
+    private Tipo BASE= new Tipo("Generico", "Generico tipo di elemento");
 
     public static ContenitoreTipo getContenitoreTipo() {
         return ref;
@@ -22,13 +18,12 @@ public class ContenitoreTipo implements Serializable {
 
     private ContenitoreTipo() {
         this.lista.add(0,BASE);
-        System.out.println(BASE);
     }
 
-    public void add(String nome, String commenti, TipoGenerico tipo) {
-        TipoComponenti t = null;
+    public void add(String nome, String commenti, Tipo tipo) {
+        Tipo t = null;
         try {
-            t = new TipoComponenti(nome, commenti, tipo);
+            t = new Tipo(nome, commenti, tipo);
 
             add(t);
             Magazzino.saveState();
@@ -37,7 +32,7 @@ public class ContenitoreTipo implements Serializable {
         }
     }
 
-    public void add(TipoGenerico t) {
+    public void add(Tipo t) {
         try {
             if (this.lista.contains(t)) {
                 throw new TipoGiaPresente();
@@ -48,7 +43,7 @@ public class ContenitoreTipo implements Serializable {
         }
     }
 
-    public TipoGenerico getWithName(String name) {
+    public Tipo getWithName(String name) {
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getNometipo() == name)
                 return lista.get(i);
@@ -56,11 +51,11 @@ public class ContenitoreTipo implements Serializable {
         return null;
     }
 
-    public TipoGenerico Generico() {
+    public Tipo Generico() {
         return BASE;
     }
 
-    public ArrayList<TipoGenerico> getList() {
+    public ArrayList<Tipo> getList() {
         return lista;
     }
 }
