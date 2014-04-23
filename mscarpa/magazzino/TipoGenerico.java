@@ -52,8 +52,7 @@ public class TipoGenerico implements GenericoElemento {
         return new String[]{this.getNometipo(),this.getAnnotazioni()};
     }
 
-    @Override
-    public String[] getNomeCampi() {
+    public String[] getNomeCampi(){
         return new String[]{"Nome del Tipo", "Annotazioni", "Supertipo"};
     }
 }

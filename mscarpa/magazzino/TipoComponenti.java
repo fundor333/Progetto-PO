@@ -40,5 +40,4 @@ public class TipoComponenti extends TipoGenerico {
         else
             return false;
     }
-
 }

@@ -1,9 +1,6 @@
 package mscarpa.gui;
 
-import mscarpa.magazzino.Componenti;
-import mscarpa.magazzino.GenericoElemento;
 import mscarpa.magazzino.Magazzino;
-import mscarpa.magazzino.TipoComponenti;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +12,13 @@ public class Wellcome extends Frame {
     /*Set delle dimensioni della finestra*/
     public final static int LARGHEZZA = 300;
     public final static int ALTEZZA = 200;
-    private final static Magazzino magazzino=Magazzino.getMagazzino();
+    private final static Magazzino magazzino = Magazzino.getMagazzino();
 
     public static void main(String[] args) {
         /*Set della posizione relativa della finestra*/
 
-        final JPanel nord=new JPanel();
-        final JPanel exit=new JPanel();
+        final JPanel nord = new JPanel();
+        final JPanel exit = new JPanel();
 
         final int ALTEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2.5);
         final int LARGHEZZA_REL = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 3);
@@ -42,13 +39,12 @@ public class Wellcome extends Frame {
             }
         });
 
-        gestoreTipi.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        JDialog gm = new GestoreTipi(mainFrame);
-                        gm.setVisible(true);
-                    }
-                });
+        gestoreTipi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog gm = new GestoreTipi(mainFrame);
+                gm.setVisible(true);
+            }
+        });
 
         salvaStato.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -68,7 +64,7 @@ public class Wellcome extends Frame {
         mainFrame.add(exit);
 
         /*Comandi di impostazione di visualizzazione*/
-        mainFrame.setLayout(new GridLayout(3,2));
+        mainFrame.setLayout(new GridLayout(3, 2));
         mainFrame.setSize(LARGHEZZA, ALTEZZA);
         mainFrame.setLocation(ALTEZZA_REL, LARGHEZZA_REL);
         mainFrame.setVisible(true);

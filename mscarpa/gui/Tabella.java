@@ -2,29 +2,25 @@ package mscarpa.gui;
 
 import mscarpa.magazzino.GenericoElemento;
 
+import javax.swing.*;
 import java.awt.*;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import java.util.List;
 
 
-public class Tabella<E  extends GenericoElemento> extends JPanel {
+public class Tabella<E extends GenericoElemento> extends JPanel {
     private JTable matrice;
     private String[] etichette;
 
-    public Tabella(List<E> elementi,String[] etichette){
-        this.etichette=etichette;
+    public Tabella(List<E> elementi, String[] etichette) {
+        this.etichette = etichette;
         inizializza(elementi);
     }
 
-    public void aggiorna(List<E> elementi){
+    public void aggiorna(List<E> elementi) {
         inizializza(elementi);
     }
 
-    private Object[][] adattatore (List<E> a, String[] s){
+    private Object[][] adattatore(List<E> a, String[] s) {
         Object[][] o;
         try {
             o = new Object[a.size()][s.length];
@@ -33,29 +29,20 @@ public class Tabella<E  extends GenericoElemento> extends JPanel {
                     o[i][j] = (a.get(i).getCampi())[j];
                 }
             }
-        }
-        catch (NullPointerException np){
-            o=new Object[1][s.length];
-            for (int i=0;i<s.length;i++)
-            {
-                o[0][i]="";
-            }
-        }
-        catch (IndexOutOfBoundsException e){
-            o=new Object[1][s.length];
-            for (int i=0;i<s.length;i++)
-            {
-                o[0][i]="";
+        } catch (IndexOutOfBoundsException e) {
+            o = new Object[1][s.length];
+            for (int i = 0; i < s.length; i++) {
+                o[0][i] = "";
             }
         }
         return o;
     }
 
-    private void inizializza(List<E> elementi){
+    private void inizializza(List<E> elementi) {
         Object[][] elementiTabella;
         super.removeAll();
-        elementiTabella=adattatore(elementi,etichette);
-        matrice = new JTable(elementiTabella,etichette){
+        elementiTabella = adattatore(elementi, etichette);
+        matrice = new JTable(elementiTabella, etichette) {
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
