@@ -5,7 +5,7 @@ import mscarpa.exception.ErroreMancanoComponenti;
 
 import java.io.Serializable;
 
-public class Componenti implements Serializable,GenericoElemento {
+public class Componenti implements GenericoElemento {
 
     private final String nome;
     private final Long codiceaBarre;

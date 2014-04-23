@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
  */
 public class AggiungiComponente extends JDialog {
 
+    private Magazzino magazzino= Magazzino.getMagazzino();
     private JButton ok = new JButton("OK");
     private Magazzino M=Magazzino.getMagazzino();
 
@@ -87,15 +88,8 @@ public class AggiungiComponente extends JDialog {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName((String)(tipoT.getSelectedItem())));
-                }
-                catch (ErroreMancanoComponenti err) {
-                    JOptionPane.showMessageDialog(null, err.getMessage());
-                } catch (ComponenteGiaPresente err) {
-                    JOptionPane.showMessageDialog(null, err.getMessage());
-                } catch (ComponenteCreate err) {
-                    JOptionPane.showMessageDialog(null, err.getMessage());
-                }
-                catch (NumberFormatException err) {
+                    parent.refreshTable();
+                } catch (NumberFormatException err) {
                     JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
                 }
                 finally {
@@ -106,9 +100,12 @@ public class AggiungiComponente extends JDialog {
     }
 
     private void setTipoT(){
-        nomiTipi=new String[Magazzino.getMagazzino().getTipi().size()];
-        for(int i=0;i< Magazzino.getMagazzino().getTipi().size();i++) {
-            this.nomiTipi[i]=Magazzino.getMagazzino().getTipi().get(i).getNometipo();
+        nomiTipi=new String[magazzino.getTipi().size()];
+        System.out.println(magazzino.getTipi().size());
+        System.out.println(magazzino.getTipi().get(0));
+        for(int i=0;i< magazzino.getTipi().size();i++) {
+            System.out.println(magazzino.getTipi().get(i).getNometipo());
+            this.nomiTipi[i]=magazzino.getTipi().get(i).getNometipo();
         }
         tipoT=new JComboBox(nomiTipi);
         setSize(500, 300);

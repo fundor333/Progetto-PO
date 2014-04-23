@@ -7,17 +7,21 @@ import java.io.Serializable;
 /**
  * Created by matteoscarpa on 22/04/14.
  */
-public class TipoGenerico implements Serializable,GenericoElemento {
+public class TipoGenerico implements GenericoElemento {
     private final String nometipo;
     private final String annotazioni;
     //TODO Fare sotto forma di Singeton
 
 
-    TipoGenerico(String nomet, String ann) throws TipoInvalido,NullPointerException {
-        if(nomet==null)
-            throw new TipoInvalido();
+    public TipoGenerico(String nomet, String ann){
+        if(nomet==null){
+        this.nometipo="Senza nome";
+        this.annotazioni="";
+        }
+        else{
         this.nometipo = nomet;
         this.annotazioni = ann;
+        }
     }
 
     public String getNometipo() {
