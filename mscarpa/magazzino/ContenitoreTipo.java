@@ -58,4 +58,9 @@ public class ContenitoreTipo implements Serializable {
     public ArrayList<Tipo> getList() {
         return lista;
     }
+
+    void elimina(Tipo tipeWithName) {
+        if (!tipeWithName.getCampi()[2].equals("NULL"))
+            lista.remove(tipeWithName);
+    }
 }

@@ -11,8 +11,8 @@ public class GestoreTipi extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
-    private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
+    private JButton eliminaElemento = new JButton("Elimina elemento");
     private Magazzino magazzino=Magazzino.getMagazzino();
 
     public GestoreTipi(JFrame mainFrame) {
@@ -45,9 +45,18 @@ public class GestoreTipi extends JDialog {
                 refreshTable();
             }
         });
+        eliminaElemento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                EliminaTipi ag = new EliminaTipi(GestoreTipi.this);
+                ag.setVisible(true);
+                refreshTable();
+            }
+        });
+
         refreshTable();
         setPulsanti.add(aggiungiElemento);
-        setPulsanti.add(refresh);
+        setPulsanti.add(eliminaElemento);
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(1, 3));
     }

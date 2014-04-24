@@ -65,4 +65,9 @@ public class Magazzino implements Serializable {
     public List<Tipo> getTipi(){
         return tipi.getList();
     }
+
+    public void eliminaTipiComponenti(Tipo tipeWithName) {
+        this.tipi.elimina(tipeWithName);
+    }
+    public void eliminaComponenti(Componenti c){this.componenti.elimina(c);}
 }

@@ -68,4 +68,8 @@ public class ContenitoreComponenti implements Serializable{
     public ArrayList<Componenti> getList() {
         return lista;
     }
+
+    void elimina(Componenti c){
+        lista.remove(c);
+    }
 }

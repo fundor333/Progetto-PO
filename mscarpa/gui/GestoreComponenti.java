@@ -11,8 +11,8 @@ public class GestoreComponenti extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
-    private JButton refresh = new JButton("Refresh");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
+    private JButton eliminaElemento = new JButton("Elimina elemento");
     private Magazzino magazzino=Magazzino.getMagazzino();
 
     public GestoreComponenti(JFrame mainFrame) {
@@ -43,7 +43,6 @@ public class GestoreComponenti extends JDialog {
         });
         refreshTable();
         setPulsanti.add(aggiungiElemento);
-        setPulsanti.add(refresh);
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(1, 3));
     }

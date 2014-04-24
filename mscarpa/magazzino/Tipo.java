@@ -28,7 +28,7 @@ public class Tipo implements GenericoElemento {
         this.padre = padre;
     }
 
-    public Tipo(String nometipo,String annotazioni){
+    Tipo(String nometipo,String annotazioni){
         if(nometipo==null){
             this.nometipo="Senza nome";
             this.annotazioni="";
