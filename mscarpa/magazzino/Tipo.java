@@ -59,7 +59,7 @@ public class Tipo implements GenericoElemento {
         return nometipo;
     }
 
-    public String[] getNomeCampi(){
+    public static String[] getNomeCampi(){
         return new String[]{"Nome del Tipo", "Annotazioni", "Supertipo"};
     }
 

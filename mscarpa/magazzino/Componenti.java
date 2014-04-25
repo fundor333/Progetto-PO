@@ -84,7 +84,7 @@ public class Componenti implements GenericoElemento {
         return s;
     }
 
-    public String[] getNomeCampi(){
+    public static String[] getNomeCampi(){
         return new String[]{"Nome","Codice a Barre","Caratteristiche","Posizione","Quantità","Prezzo","Tipo"};
     }
 }

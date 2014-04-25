@@ -7,5 +7,4 @@ import java.io.Serializable;
  */
 public interface GenericoElemento extends Serializable{
     public String[] getCampi();
-    public String[] getNomeCampi();
 }

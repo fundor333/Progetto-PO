@@ -5,19 +5,18 @@ import mscarpa.exception.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @author matteoscarpa
- */
 public class Magazzino implements Serializable {
 
     private static Magazzino RIFERIMENTO;
     private ContenitoreTipo tipi;
     private ContenitoreComponenti componenti;
+    private ContenitorePacco pacco;
 
 
     private Magazzino() throws TipoInvalido {
         this.componenti = ContenitoreComponenti.getContenitoreComponenti();
         this.tipi = ContenitoreTipo.getContenitoreTipo();
+        this.pacco = ContenitorePacco.gerContenitorePacco();
     }
 
     public static Magazzino getMagazzino() {
@@ -44,7 +43,6 @@ public class Magazzino implements Serializable {
         return tipi.getWithName(name);
     }
 
-
     public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t){
         componenti.add(nome,posizione,codiceaBarre,caratteristiche,quantita,prezzo,t);
     }
@@ -52,7 +50,6 @@ public class Magazzino implements Serializable {
     public void addTipiComponenti(String nometipo, String annotazioni, Tipo tipeWithName) throws TipoGiaPresente, TipoInvalido {
         tipi.add(nometipo,annotazioni,tipeWithName);
     }
-
 
     public List<Componenti> getComponenti(){
         return componenti.getList();
@@ -66,8 +63,13 @@ public class Magazzino implements Serializable {
         return tipi.getList();
     }
 
+    public List<Pacco> getPacchi() {return pacco.getPacchi();}
+
     public void eliminaTipiComponenti(Tipo tipeWithName) {
         this.tipi.elimina(tipeWithName);
     }
+
     public void eliminaComponenti(Componenti c){this.componenti.elimina(c);}
+
+    public void eliminaPacchi(Pacco p){this.pacco.remove(p);}
 }

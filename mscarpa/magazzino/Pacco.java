@@ -3,12 +3,10 @@ package mscarpa.magazzino;
 import mscarpa.exception.ComponenteTerminato;
 import mscarpa.exception.ErroreMancanoComponenti;
 
+import java.io.Serializable;
 import java.util.Map;
 
-/**
- * @author matteoscarpa
- */
-public class Pacco {
+public class Pacco implements GenericoElemento {
 
     private final String nome;
     private Map<Componenti, Integer> listacomponenti;
@@ -19,14 +17,26 @@ public class Pacco {
         this.nome = nome;
     }
 
-    public void addComponente(Componenti c, Integer i) throws ErroreMancanoComponenti, ComponenteTerminato {
+    void addComponente(Componenti c, Integer i) throws ErroreMancanoComponenti, ComponenteTerminato {
         c.modificaQuantita(i);
         this.listacomponenti.put(c, i);
         this.calcolaValore(c, i);
     }
 
-    public void calcolaValore(Componenti c, int i) {
+    private void calcolaValore(Componenti c, int i) {
         this.valore = this.valore + (c.getPrezzo() * i);
     }
 
+    @Override
+    public String[] getCampi() {
+        String[] result=new String[3];
+        result[0]=nome;
+        result[1]=String.valueOf(listacomponenti.size());
+        result[2]=String.valueOf(valore);
+        return result;
+    }
+
+    public static String[] getNomeCampi() {
+        return new String[] {"Nome","Numero di componenti","Valore totale"};
+    }
 }
