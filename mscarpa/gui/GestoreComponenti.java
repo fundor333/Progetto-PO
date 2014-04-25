@@ -1,11 +1,13 @@
 package mscarpa.gui;
 
-import mscarpa.exception.*;
-import mscarpa.magazzino.*;
+import mscarpa.magazzino.Componenti;
+import mscarpa.magazzino.GenericoElemento;
+import mscarpa.magazzino.Magazzino;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GestoreComponenti extends JDialog {
     private Tabella tabella;
@@ -13,12 +15,12 @@ public class GestoreComponenti extends JDialog {
     private JButton ok = new JButton("Salva");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
     private JButton eliminaElemento = new JButton("Elimina elemento");
-    private Magazzino magazzino=Magazzino.getMagazzino();
+    private Magazzino magazzino = Magazzino.getMagazzino();
 
     public GestoreComponenti(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
         GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, magazzino.getTIPODIBASE());
-        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), g.getNomeCampi());
+        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), Componenti.getNomeCampi());
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);

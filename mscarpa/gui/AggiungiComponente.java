@@ -20,31 +20,7 @@ public class AggiungiComponente extends JDialog {
 
     private JPanel labels = new JPanel();
     private String[] nomiTipi;
-
-    private void setLabels() {
-        labels.add(nomeL);
-        labels.add(codiceaBarreL);
-        labels.add(caratteristicheL);
-        labels.add(posizioneL);
-        labels.add(quantitaL);
-        labels.add(prezzoL);
-        labels.add(tipoL);
-        labels.setLayout(new GridLayout(7, 1));
-    }
-
     private JPanel textField = new JPanel();
-
-    private void setTextField() {
-        textField.add(nomeT);
-        textField.add(codiceaBarreT);
-        textField.add(caratteristicheT);
-        textField.add(posizioneT);
-        textField.add(quantitaT);
-        textField.add(prezzoT);
-        textField.add(tipoT);
-        textField.setLayout(new GridLayout(7, 1));
-    }
-
     // Le varie enuple testo e campo di inserimento, una enupla per ogni attributo del componente
     private JLabel nomeL = new JLabel("Nome:");
     private JTextField nomeT = new JTextField();
@@ -60,7 +36,6 @@ public class AggiungiComponente extends JDialog {
     private JTextField prezzoT = new JTextField();
     private JLabel tipoL = new JLabel("Tipo");
     private JComboBox tipoT;
-
     public AggiungiComponente(GestoreComponenti parent) {
         super(parent, "Nuovo Componente");
         this.parent = parent;
@@ -72,6 +47,28 @@ public class AggiungiComponente extends JDialog {
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
+    }
+
+    private void setLabels() {
+        labels.add(nomeL);
+        labels.add(codiceaBarreL);
+        labels.add(caratteristicheL);
+        labels.add(posizioneL);
+        labels.add(quantitaL);
+        labels.add(prezzoL);
+        labels.add(tipoL);
+        labels.setLayout(new GridLayout(7, 1));
+    }
+
+    private void setTextField() {
+        textField.add(nomeT);
+        textField.add(codiceaBarreT);
+        textField.add(caratteristicheT);
+        textField.add(posizioneT);
+        textField.add(quantitaT);
+        textField.add(prezzoT);
+        textField.add(tipoT);
+        textField.setLayout(new GridLayout(7, 1));
     }
 
     private void inizializzaElementi() {

@@ -1,7 +1,5 @@
 package mscarpa.gui;
 
-import mscarpa.exception.TipoGiaPresente;
-import mscarpa.exception.TipoInvalido;
 import mscarpa.magazzino.Magazzino;
 
 import javax.swing.*;
@@ -27,19 +25,7 @@ public class EliminaTipi extends JDialog {
     // Le varie enuple testo e campo di inserimento, una enupla per ogni attributo del componente
     private JLabel supertipoL = new JLabel("Tipo");
     private JComboBox supertipoT;
-
-    private void setLabels() {
-        labels.add(supertipoL);
-        labels.setLayout(new GridLayout(1, 1));
-    }
-
     private JPanel textField = new JPanel();
-
-    private void setTextField() {
-        textField.add(supertipoT);
-        textField.setLayout(new GridLayout(1, 1));
-    }
-
 
     public EliminaTipi(GestoreTipi parent) {
         super(parent, "Nuovo Componente");
@@ -54,6 +40,16 @@ public class EliminaTipi extends JDialog {
         setModal(true);
     }
 
+    private void setLabels() {
+        labels.add(supertipoL);
+        labels.setLayout(new GridLayout(1, 1));
+    }
+
+    private void setTextField() {
+        textField.add(supertipoT);
+        textField.setLayout(new GridLayout(1, 1));
+    }
+
     private void inizializzaElementi() {
         setTipoT();
         setLabels();
@@ -64,9 +60,9 @@ public class EliminaTipi extends JDialog {
             //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    Magazzino.getMagazzino().eliminaTipiComponenti(magazzino.getTipeWithName((String)(supertipoT.getSelectedItem())));
-                    parent.refreshTable();}
-                    finally {
+                    Magazzino.getMagazzino().eliminaTipiComponenti(magazzino.getTipeWithName((String) (supertipoT.getSelectedItem())));
+                    parent.refreshTable();
+                } finally {
                     parent.refreshTable();
                 }
             }

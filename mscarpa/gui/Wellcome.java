@@ -27,6 +27,7 @@ public class Wellcome extends Frame {
         /*Dichiarazione degli altri elementi presenti*/
         final JButton gestoreComponenti = new JButton("Magazzino");
         final JButton gestoreTipi = new JButton("Tipi di componenti");
+        final JButton gestorePacchi = new JButton("Gestore Pacchi");
         final JButton salvaStato = new JButton(("Chiudi"));
 
 
@@ -52,16 +53,24 @@ public class Wellcome extends Frame {
             }
         });
 
+        gestorePacchi.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog gm = new GestorePacchi(mainFrame);
+                gm.setVisible(true);
+            }
+        });
+
         /*Comandi di visualizzazione elementi*/
         nord.add(gestoreComponenti);
         nord.add(gestoreTipi);
+        nord.add(gestorePacchi);
         nord.add(salvaStato);
-        nord.setLayout(new GridLayout(3, 1));
+        nord.setLayout(new GridLayout(4, 1));
 
         mainFrame.add(nord);
 
         /*Comandi di impostazione di visualizzazione*/
-        mainFrame.setLayout(new GridLayout(1,1));
+        mainFrame.setLayout(new GridLayout(1, 1));
         mainFrame.setSize(LARGHEZZA, ALTEZZA);
         mainFrame.setLocation(ALTEZZA_REL, LARGHEZZA_REL);
         mainFrame.setVisible(true);
