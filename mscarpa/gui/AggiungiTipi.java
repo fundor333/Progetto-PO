@@ -71,6 +71,7 @@ public class AggiungiTipi extends JDialog {
                 try {
                     Magazzino.getMagazzino().addTipiComponenti(nomeT.getText(), caratteristicheT.getText(), M.getTipeWithName((String) supertipoT.getSelectedItem()));
                     parent.refreshTable();
+                    setVisible(false);
                 } catch (NumberFormatException err) {
                     JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
                 } catch (TipoGiaPresente tipoGiaPresente) {
@@ -85,10 +86,7 @@ public class AggiungiTipi extends JDialog {
 
     private void setTipoT() {
         nomiTipi = new String[magazzino.getTipi().size()];
-        System.out.println(magazzino.getTipi().size());
-        System.out.println(magazzino.getTipi().get(0));
         for (int i = 0; i < magazzino.getTipi().size(); i++) {
-            System.out.println(magazzino.getTipi().get(i).getNometipo());
             this.nomiTipi[i] = magazzino.getTipi().get(i).getNometipo();
         }
         supertipoT = new JComboBox(nomiTipi);

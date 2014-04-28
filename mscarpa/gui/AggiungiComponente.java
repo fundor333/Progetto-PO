@@ -82,6 +82,7 @@ public class AggiungiComponente extends JDialog {
                 try {
                     Magazzino.getMagazzino().addComponenti(nomeT.getText(), posizioneT.getText(), Long.parseLong(codiceaBarreT.getText()), caratteristicheT.getText(), Integer.parseInt(quantitaT.getText()), Double.parseDouble(prezzoT.getText()), M.getTipeWithName((String) (tipoT.getSelectedItem())));
                     parent.refreshTable();
+                    setVisible(false);
                 } catch (NumberFormatException err) {
                     JOptionPane.showMessageDialog(null, "Il numero inserito non è valido");
                 } finally {

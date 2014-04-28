@@ -48,7 +48,7 @@ public class Tabella<E extends GenericoElemento> extends JPanel {
             }
         };
         matrice.setLayout(new BorderLayout());
-        matrice.setPreferredScrollableViewportSize(new Dimension(650, 200));
+        matrice.setPreferredScrollableViewportSize(new Dimension(900, 200));
         matrice.setFillsViewportHeight(true);
         matrice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         super.add(matrice.getTableHeader(), BorderLayout.PAGE_START);

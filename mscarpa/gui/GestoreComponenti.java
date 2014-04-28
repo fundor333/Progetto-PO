@@ -32,6 +32,7 @@ public class GestoreComponenti extends JDialog {
         ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
+                setVisible(false);
             }
         });
         aggiungiElemento.addActionListener(new ActionListener() {

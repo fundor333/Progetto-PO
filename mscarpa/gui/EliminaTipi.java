@@ -57,6 +57,7 @@ public class EliminaTipi extends JDialog {
             public void actionPerformed(ActionEvent actionEvent) {
                     Magazzino.getMagazzino().eliminaTipiComponenti(magazzino.getTipeWithName((String) (supertipoT.getSelectedItem())));
                     parent.refreshTable();
+                    setVisible(false);
             }
         });
     }
