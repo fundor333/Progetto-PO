@@ -7,24 +7,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EliminaTipi extends JDialog {
+public class EliminaBolla extends JDialog {
 
     private Magazzino magazzino = Magazzino.getMagazzino();
     private JButton ok = new JButton("OK");
     private Magazzino M = Magazzino.getMagazzino();
 
-    private GestoreTipi parent;
+    private ArchivioBolle parent;
 
     private JPanel labels = new JPanel();
     private String[] nomiTipi;
 
 
     // Le varie enuple testo e campo di inserimento, una enupla per ogni attributo del componente
-    private JLabel supertipoL = new JLabel("Tipo");
+    private JLabel supertipoL = new JLabel("Bolla");
     private JComboBox supertipoT;
     private JPanel textField = new JPanel();
 
-    public EliminaTipi(GestoreTipi parent) {
+    public EliminaBolla(ArchivioBolle parent) {
         super(parent, "Nuovo Componente");
         this.parent = parent;
         inizializzaElementi();
@@ -55,17 +55,17 @@ public class EliminaTipi extends JDialog {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                    Magazzino.getMagazzino().eliminaTipiComponenti(magazzino.getTipeWithName((String) (supertipoT.getSelectedItem())));
-                    parent.refreshTable();
-                    setVisible(false);
+                Magazzino.getMagazzino().eliminaBolla(magazzino.getBollaWithName((String) (supertipoT.getSelectedItem())));
+                parent.refreshTable();
+                setVisible(false);
             }
         });
     }
 
     private void setTipoT() {
-        nomiTipi = new String[magazzino.getTipi().size()];
-        for (int i = 0; i < magazzino.getTipi().size(); i++) {
-            this.nomiTipi[i] = magazzino.getTipi().get(i).getNometipo();
+        nomiTipi = new String[magazzino.getBolla().size()];
+        for (int i = 0; i < magazzino.getBolla().size(); i++) {
+            this.nomiTipi[i] = magazzino.getBolla().get(i).getNome();
         }
         supertipoT = new JComboBox(nomiTipi);
         setSize(500, 300);

@@ -38,10 +38,14 @@ public class GestoreNuovaBolla extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
+                setVisible(false);
             }
         });
         aggiungiElemento.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent actionEvent){}
+            public void actionPerformed(ActionEvent actionEvent){
+               PopolaBolla pb = new PopolaBolla(GestoreNuovaBolla.this,bollaConsegna);
+                pb.setVisible(true);
+            }
         });
         setPulsanti.add(aggiungiElemento);
         setPulsanti.add(ok);

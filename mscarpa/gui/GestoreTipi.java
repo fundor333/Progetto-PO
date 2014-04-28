@@ -29,6 +29,7 @@ public class GestoreTipi extends JDialog {
             setSize(700, 320);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setModal(true);
+            setVisible(false);
         } catch (TipoInvalido tipoInvalido) {
             tipoInvalido.printStackTrace();
         }
@@ -38,6 +39,7 @@ public class GestoreTipi extends JDialog {
         ok.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
+                setVisible(false);
             }
         });
         aggiungiElemento.addActionListener(new ActionListener() {

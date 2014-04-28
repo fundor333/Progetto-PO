@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 public class ArchivioBolle extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
-    private JButton ok = new JButton("Salva");
-    private JComboBox aggiungi =new JComboBox();
+    private JButton ok = new JButton("Ok");
+    private JButton elimina = new JButton("Elimina elemento");
     private Magazzino magazzino = Magazzino.getMagazzino();
 
     public ArchivioBolle(JFrame mainFrame) {
@@ -31,9 +31,19 @@ public class ArchivioBolle extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
+                setVisible(false);
+            }
+        });
+        elimina.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog gm = new EliminaBolla(ArchivioBolle.this);
+                gm.setVisible(true);
+                refreshTable();
             }
         });
         refreshTable();
+        setPulsanti.add(elimina);
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(1, 3));
     }
