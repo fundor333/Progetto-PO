@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class ContenitoreTipo implements Serializable {
     private static final ContenitoreTipo ref = new ContenitoreTipo();
-    private ArrayList<Tipo> lista= new ArrayList<Tipo>();
-    private Tipo BASE= new Tipo("Generico", "Generico tipo di elemento");
+    private ArrayList<Tipo> lista = new ArrayList<Tipo>();
+    private Tipo BASE = new Tipo("Generico", "Generico tipo di elemento");
+
+    private ContenitoreTipo() {
+        this.lista.add(0, BASE);
+    }
 
     public static ContenitoreTipo getContenitoreTipo() {
         return ref;
-    }
-
-    private ContenitoreTipo() {
-        this.lista.add(0,BASE);
     }
 
     public void add(String nome, String commenti, Tipo tipo) {
@@ -63,4 +63,6 @@ public class ContenitoreTipo implements Serializable {
         if (!tipeWithName.getCampi()[2].equals("NULL"))
             lista.remove(tipeWithName);
     }
+
+
 }

@@ -27,7 +27,7 @@ public class Wellcome extends Frame {
         /*Dichiarazione degli altri elementi presenti*/
         final JButton gestoreComponenti = new JButton("Magazzino");
         final JButton gestoreTipi = new JButton("Tipi di componenti");
-        final JButton gestorePacchi = new JButton("Gestore Pacchi");
+        final JButton gestorePacchi = new JButton("Gestore Bolle");
         final JButton salvaStato = new JButton(("Chiudi"));
 
 
@@ -55,7 +55,7 @@ public class Wellcome extends Frame {
 
         gestorePacchi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                JDialog gm = new GestorePacchi(mainFrame);
+                JDialog gm = new GestoreBolla(mainFrame);
                 gm.setVisible(true);
             }
         });

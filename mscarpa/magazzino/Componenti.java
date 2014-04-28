@@ -3,8 +3,6 @@ package mscarpa.magazzino;
 import mscarpa.exception.ComponenteTerminato;
 import mscarpa.exception.ErroreMancanoComponenti;
 
-import java.io.Serializable;
-
 public class Componenti implements GenericoElemento {
 
     private final String nome;
@@ -24,6 +22,10 @@ public class Componenti implements GenericoElemento {
         this.caratteristiche = caratteristiche;
         this.quantita = Math.abs(quantita);
         this.prezzo = Math.abs(prezzo);
+    }
+
+    public static String[] getNomeCampi() {
+        return new String[]{"Nome", "Codice a Barre", "Caratteristiche", "Posizione", "Quantità", "Prezzo", "Tipo"};
     }
 
     public String getNome() {
@@ -54,8 +56,8 @@ public class Componenti implements GenericoElemento {
         return tipo;
     }
 
-    private boolean equals(Componenti c){
-        if (c.codiceaBarre==this.codiceaBarre)
+    private boolean equals(Componenti c) {
+        if (c.codiceaBarre == this.codiceaBarre)
             return true;
         else
             return false;
@@ -80,11 +82,11 @@ public class Componenti implements GenericoElemento {
 
     @Override
     public String[] getCampi() {
-        String[] s= new String[]{nome,codiceaBarre.toString(),caratteristiche,posizione,quantita.toString(),prezzo.toString(),tipo.getNometipo()};
+        String[] s = new String[]{nome, codiceaBarre.toString(), caratteristiche, posizione, quantita.toString(), prezzo.toString(), tipo.getNometipo()};
         return s;
     }
 
-    public static String[] getNomeCampi(){
-        return new String[]{"Nome","Codice a Barre","Caratteristiche","Posizione","Quantità","Prezzo","Tipo"};
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 }

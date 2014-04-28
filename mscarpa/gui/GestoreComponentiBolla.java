@@ -1,25 +1,28 @@
 package mscarpa.gui;
 
+import mscarpa.magazzino.BollaConsegna;
 import mscarpa.magazzino.Componenti;
 import mscarpa.magazzino.Magazzino;
-import mscarpa.magazzino.Pacco;
+import mscarpa.magazzino.RigaBolla;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GestorePacchi extends JDialog {
+public class GestoreComponentiBolla extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
     private JButton eliminaElemento = new JButton("Elimina elemento");
     private Magazzino magazzino = Magazzino.getMagazzino();
+    private BollaConsegna bollaConsegna;
 
-    public GestorePacchi(JFrame mainFrame) {
+    public GestoreComponentiBolla(JFrame mainFrame, BollaConsegna bollaConsegna) {
         super(mainFrame, "Magazzino");
-        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), Pacco.getNomeCampi());
+        this.bollaConsegna = bollaConsegna;
+        this.tabella = new Tabella<RigaBolla>(bollaConsegna.getComponenti(), Componenti.getNomeCampi());
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
@@ -29,20 +32,16 @@ public class GestorePacchi extends JDialog {
     }
 
     private void pulsanti() {
+        refreshTable();
         ok.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Magazzino.saveState();
             }
         });
         aggiungiElemento.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                AggiungiPacchi ag = new AggiungiPacchi(GestorePacchi.this);
-                ag.setVisible(true);
-                refreshTable();
-            }
+            public void actionPerformed(ActionEvent actionEvent){}
         });
-        refreshTable();
         setPulsanti.add(aggiungiElemento);
         setPulsanti.add(ok);
         setPulsanti.setLayout(new GridLayout(1, 3));

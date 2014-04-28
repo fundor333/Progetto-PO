@@ -7,21 +7,20 @@ import mscarpa.exception.ErroreMancanoComponenti;
 import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by matteoscarpa on 23/04/14.
  */
-public class ContenitoreComponenti implements Serializable{
+public class ContenitoreComponenti implements Serializable {
+    private static final ContenitoreComponenti ref = new ContenitoreComponenti();
     private ArrayList<Componenti> lista;
-    private static final ContenitoreComponenti ref= new ContenitoreComponenti();
 
-    public static ContenitoreComponenti getContenitoreComponenti(){
-        return ref;
+    private ContenitoreComponenti() {
+        lista = new ArrayList<Componenti>();
     }
 
-    private ContenitoreComponenti(){
-        lista=new ArrayList<Componenti>();
+    public static ContenitoreComponenti getContenitoreComponenti() {
+        return ref;
     }
 
     public boolean contains(Componenti c) {
@@ -38,38 +37,46 @@ public class ContenitoreComponenti implements Serializable{
             } catch (ComponenteTerminato ex) {
                 this.lista.remove(c);
             } catch (ErroreMancanoComponenti erroreMancanoComponenti) {
-                JOptionPane.showMessageDialog(null,erroreMancanoComponenti.getMessage());
+                JOptionPane.showMessageDialog(null, erroreMancanoComponenti.getMessage());
             } catch (ComponenteGiaPresente componenteGiaPresente) {
-                JOptionPane.showMessageDialog(null,componenteGiaPresente.getMessage());
+                JOptionPane.showMessageDialog(null, componenteGiaPresente.getMessage());
             }
         } else /*Aggiunge l'oggetto alla lista*/ {
-                this.lista.add(c);
-                JOptionPane.showMessageDialog(null,"Il componente è stato creato correttamente");
+            this.lista.add(c);
+            JOptionPane.showMessageDialog(null, "Il componente è stato creato correttamente");
         }
         Magazzino.saveState();
     }
+
     public int size() {
         return lista.size();
     }
 
-    public void remove(Componenti c){
+    public void remove(Componenti c) {
         lista.remove(c);
     }
 
-        public Componenti getWithName(String s) {
-            for (int i=0;i<lista.size();i++)
-            {
-                if (lista.get(i).getNome()==s)
-                    return lista.get(i);
-            }
-            return null;
+    public Componenti getWithName(String s) {
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getNome() == s)
+                return lista.get(i);
+        }
+        return null;
     }
 
     public ArrayList<Componenti> getList() {
         return lista;
     }
 
-    void elimina(Componenti c){
+    void elimina(Componenti c) {
         lista.remove(c);
+    }
+
+    public void cambiaTipo(Tipo tipeWithName) {
+        for (int i=0;i<lista.size();i++)
+        {
+            if(lista.get(i).getTipo().equals(tipeWithName))
+                lista.get(i).setTipo(tipeWithName.getPadre());
+        }
     }
 }

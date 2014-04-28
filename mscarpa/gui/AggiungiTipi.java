@@ -67,7 +67,6 @@ public class AggiungiTipi extends JDialog {
 
         ok.addActionListener(new ActionListener() {
             @Override
-            //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     Magazzino.getMagazzino().addTipiComponenti(nomeT.getText(), caratteristicheT.getText(), M.getTipeWithName((String) supertipoT.getSelectedItem()));

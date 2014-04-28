@@ -1,6 +1,7 @@
 package mscarpa.magazzino;
 
-import mscarpa.exception.*;
+import mscarpa.exception.TipoGiaPresente;
+import mscarpa.exception.TipoInvalido;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,13 +11,13 @@ public class Magazzino implements Serializable {
     private static Magazzino RIFERIMENTO;
     private ContenitoreTipo tipi;
     private ContenitoreComponenti componenti;
-    private ContenitorePacco pacco;
+    private ContenitoreBolla pacco;
 
 
     private Magazzino() throws TipoInvalido {
         this.componenti = ContenitoreComponenti.getContenitoreComponenti();
         this.tipi = ContenitoreTipo.getContenitoreTipo();
-        this.pacco = ContenitorePacco.gerContenitorePacco();
+        this.pacco = ContenitoreBolla.gerContenitorePacco();
     }
 
     public static Magazzino getMagazzino() {
@@ -25,7 +26,8 @@ public class Magazzino implements Serializable {
             if (RIFERIMENTO == null)
                 try {
                     RIFERIMENTO = new Magazzino();
-                } catch (TipoInvalido tipoInvalido) {}
+                } catch (TipoInvalido tipoInvalido) {
+                }
         }
         return RIFERIMENTO;
     }
@@ -35,23 +37,23 @@ public class Magazzino implements Serializable {
     }
 
     /**
-    *Funzione che restituisce l'oggetto con il nome indicato. Se non presente ritorna NULL
-    *
-    * @param name Nome del tipo cercato
-    */
-    public Tipo getTipeWithName(String name){
+     * Funzione che restituisce l'oggetto con il nome indicato. Se non presente ritorna NULL
+     *
+     * @param name Nome del tipo cercato
+     */
+    public Tipo getTipeWithName(String name) {
         return tipi.getWithName(name);
     }
 
-    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t){
-        componenti.add(nome,posizione,codiceaBarre,caratteristiche,quantita,prezzo,t);
+    public void addComponenti(String nome, String posizione, long codiceaBarre, String caratteristiche, int quantita, double prezzo, Tipo t) {
+        componenti.add(nome, posizione, codiceaBarre, caratteristiche, quantita, prezzo, t);
     }
 
     public void addTipiComponenti(String nometipo, String annotazioni, Tipo tipeWithName) throws TipoGiaPresente, TipoInvalido {
-        tipi.add(nometipo,annotazioni,tipeWithName);
+        tipi.add(nometipo, annotazioni, tipeWithName);
     }
 
-    public List<Componenti> getComponenti(){
+    public List<Componenti> getComponenti() {
         return componenti.getList();
     }
 
@@ -59,17 +61,16 @@ public class Magazzino implements Serializable {
         return this.tipi.Generico();
     }
 
-    public List<Tipo> getTipi(){
+    public List<Tipo> getTipi() {
         return tipi.getList();
     }
 
-    public List<Pacco> getPacchi() {return pacco.getPacchi();}
-
     public void eliminaTipiComponenti(Tipo tipeWithName) {
+        componenti.cambiaTipo(tipeWithName);
         this.tipi.elimina(tipeWithName);
     }
 
-    public void eliminaComponenti(Componenti c){this.componenti.elimina(c);}
-
-    public void eliminaPacchi(Pacco p){this.pacco.remove(p);}
+    public List<BollaConsegna> getBolla() {
+        return this.pacco.getPacchi();
+    }
 }

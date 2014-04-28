@@ -57,24 +57,16 @@ public class EliminaTipi extends JDialog {
 
         ok.addActionListener(new ActionListener() {
             @Override
-            //TODO scorretto lancio delle eccezioni(non c'è) e non corretto uso del tipi generico
             public void actionPerformed(ActionEvent actionEvent) {
-                try {
                     Magazzino.getMagazzino().eliminaTipiComponenti(magazzino.getTipeWithName((String) (supertipoT.getSelectedItem())));
                     parent.refreshTable();
-                } finally {
-                    parent.refreshTable();
-                }
             }
         });
     }
 
     private void setTipoT() {
         nomiTipi = new String[magazzino.getTipi().size()];
-        System.out.println(magazzino.getTipi().size());
-        System.out.println(magazzino.getTipi().get(0));
         for (int i = 0; i < magazzino.getTipi().size(); i++) {
-            System.out.println(magazzino.getTipi().get(i).getNometipo());
             this.nomiTipi[i] = magazzino.getTipi().get(i).getNometipo();
         }
         supertipoT = new JComboBox(nomiTipi);
