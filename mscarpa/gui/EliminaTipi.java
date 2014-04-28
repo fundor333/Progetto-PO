@@ -7,9 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by matteoscarpa on 19/04/14.
- */
 public class EliminaTipi extends JDialog {
 
     private Magazzino magazzino = Magazzino.getMagazzino();
