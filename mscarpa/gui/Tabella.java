@@ -33,8 +33,8 @@ public class Tabella<E extends GenericoElemento> extends JPanel {
             o = new Object[1][s.length];
             for (int i = 0; i < s.length; i++) {
                 o[0][i] = "";
-            }
-        }
+            }}
+
         return o;
     }
 

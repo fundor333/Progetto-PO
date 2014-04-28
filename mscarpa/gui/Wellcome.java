@@ -1,5 +1,6 @@
 package mscarpa.gui;
 
+import mscarpa.magazzino.BollaConsegna;
 import mscarpa.magazzino.Magazzino;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Wellcome extends Frame {
+public class Wellcome extends JFrame {
 
     /*Set delle dimensioni della finestra*/
     public final static int LARGHEZZA = 200;
@@ -28,6 +29,7 @@ public class Wellcome extends Frame {
         final JButton gestoreComponenti = new JButton("Magazzino");
         final JButton gestoreTipi = new JButton("Tipi di componenti");
         final JButton gestorePacchi = new JButton("Gestore Bolle");
+        final JButton nuovoPacco = new JButton("Nuova Bolla di Consegna");
         final JButton salvaStato = new JButton(("Chiudi"));
 
 
@@ -55,7 +57,15 @@ public class Wellcome extends Frame {
 
         gestorePacchi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                JDialog gm = new GestoreBolla(mainFrame);
+                JDialog gm = new ArchivioBolle(mainFrame);
+                gm.setVisible(true);
+            }
+        });
+
+        nuovoPacco.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JDialog gm = new GestoreNuovaBolla(mainFrame,new BollaConsegna(System.currentTimeMillis()));
                 gm.setVisible(true);
             }
         });
@@ -64,8 +74,9 @@ public class Wellcome extends Frame {
         nord.add(gestoreComponenti);
         nord.add(gestoreTipi);
         nord.add(gestorePacchi);
+        nord.add(nuovoPacco);
         nord.add(salvaStato);
-        nord.setLayout(new GridLayout(4, 1));
+        nord.setLayout(new GridLayout(5, 1));
 
         mainFrame.add(nord);
 

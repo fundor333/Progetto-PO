@@ -71,6 +71,10 @@ public class Magazzino implements Serializable {
     }
 
     public List<BollaConsegna> getBolla() {
-        return this.pacco.getPacchi();
+        return this.pacco.getBolla();
+    }
+
+    public void addBolla(BollaConsegna bollaConsegna) {
+        this.pacco.add(bollaConsegna);
     }
 }

@@ -19,7 +19,6 @@ public class GestoreComponenti extends JDialog {
 
     public GestoreComponenti(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
-        GenericoElemento g = new Componenti("nome", "posizione", 0, "cara", 0, 0, magazzino.getTIPODIBASE());
         this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), Componenti.getNomeCampi());
         pulsanti();
         refreshTable();
