@@ -15,6 +15,7 @@ public class BollaConsegna implements GenericoElemento {
     public BollaConsegna(long nome) {
         this.valore = 0.0;
         this.nome = nome;
+        listacomponenti=new ArrayList<RigaBolla>();
     }
 
     public static String[] getNomeCampi() {
@@ -34,7 +35,12 @@ public class BollaConsegna implements GenericoElemento {
     public String[] getCampi() {
         String[] result = new String[3];
         result[0] = String.valueOf(nome);
-        result[1] = String.valueOf(listacomponenti.size());
+        try {
+            result[1] = String.valueOf(listacomponenti.size());
+        }
+        catch (NullPointerException e){
+            result[2] = "0";
+        }
         result[2] = String.valueOf(valore);
         return result;
     }

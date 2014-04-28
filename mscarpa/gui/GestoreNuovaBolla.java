@@ -10,19 +10,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GestoreComponentiBolla extends JDialog {
+public class GestoreNuovaBolla extends JDialog {
     private Tabella tabella;
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
-    private JButton eliminaElemento = new JButton("Elimina elemento");
     private Magazzino magazzino = Magazzino.getMagazzino();
     private BollaConsegna bollaConsegna;
 
-    public GestoreComponentiBolla(JFrame mainFrame, BollaConsegna bollaConsegna) {
-        super(mainFrame, "Magazzino");
-        this.bollaConsegna = bollaConsegna;
-        this.tabella = new Tabella<RigaBolla>(bollaConsegna.getComponenti(), Componenti.getNomeCampi());
+    public GestoreNuovaBolla(JFrame mainFrame, BollaConsegna bolla) {
+        super(mainFrame, "Nuova Bolla");
+        this.bollaConsegna = bolla;
+        Magazzino.getMagazzino().addBolla(bollaConsegna);
+        this.tabella = new Tabella<RigaBolla>(bollaConsegna.getComponenti(), RigaBolla.getNomeCampi());
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
@@ -30,6 +30,7 @@ public class GestoreComponentiBolla extends JDialog {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
     }
+
 
     private void pulsanti() {
         refreshTable();
@@ -48,7 +49,7 @@ public class GestoreComponentiBolla extends JDialog {
     }
 
     public void refreshTable() {
-        tabella.aggiorna(magazzino.getComponenti());
+        tabella.aggiorna(bollaConsegna.getComponenti());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
         setSize(701, 320);

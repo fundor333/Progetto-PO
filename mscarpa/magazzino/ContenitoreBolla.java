@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContenitoreBolla implements Serializable {
     private final static ContenitoreBolla ref = new ContenitoreBolla();
-    private ArrayList<BollaConsegna> pacchi = new ArrayList<BollaConsegna>();
+    private ArrayList<BollaConsegna> bolle = new ArrayList<BollaConsegna>();
 
     private ContenitoreBolla() {
     }
@@ -18,15 +18,19 @@ public class ContenitoreBolla implements Serializable {
         return ref;
     }
 
-    public void add(BollaConsegna p, Componenti c, int quantita) throws ComponenteTerminato, ErroreMancanoComponenti {
+    public void changeBolla(BollaConsegna p, Componenti c, int quantita) throws ComponenteTerminato, ErroreMancanoComponenti {
         p.addComponente(c, quantita);
     }
 
-    public void remove(BollaConsegna p) {
-        this.pacchi.remove(p);
+    public void add(BollaConsegna b){
+        bolle.add(b);
     }
 
-    public List<BollaConsegna> getPacchi() {
-        return pacchi;
+    public void remove(BollaConsegna p) {
+        this.bolle.remove(p);
+    }
+
+    public List<BollaConsegna> getBolla() {
+        return bolle;
     }
 }
