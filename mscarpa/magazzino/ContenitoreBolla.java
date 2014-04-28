@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContenitoreBolla implements Serializable {
     private final static ContenitoreBolla ref = new ContenitoreBolla();
-    private ArrayList<BollaConsegna> bolle = new ArrayList<BollaConsegna>();
+    private ArrayList<BollaConsegna> lista = new ArrayList<BollaConsegna>();
 
     private ContenitoreBolla() {
     }
@@ -23,14 +23,22 @@ public class ContenitoreBolla implements Serializable {
     }
 
     public void add(BollaConsegna b){
-        bolle.add(b);
+        lista.add(b);
     }
 
     public void remove(BollaConsegna p) {
-        this.bolle.remove(p);
+        this.lista.remove(p);
     }
 
     public List<BollaConsegna> getBolla() {
-        return bolle;
+        return lista;
+    }
+
+    public BollaConsegna getBollaWithName(String name) {
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getNome().equals(name))
+                return lista.get(i);
+        }
+        return null;
     }
 }

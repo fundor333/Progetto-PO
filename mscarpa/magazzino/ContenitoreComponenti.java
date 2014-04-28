@@ -58,7 +58,7 @@ public class ContenitoreComponenti implements Serializable {
 
     public Componenti getWithName(String s) {
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).getNome() == s)
+            if (lista.get(i).getNome().equals(s))
                 return lista.get(i);
         }
         return null;

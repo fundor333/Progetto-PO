@@ -3,6 +3,7 @@ package mscarpa.magazzino;
 import mscarpa.exception.ComponenteTerminato;
 import mscarpa.exception.ErroreMancanoComponenti;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +20,34 @@ public class BollaConsegna implements GenericoElemento {
     }
 
     public static String[] getNomeCampi() {
-        return new String[]{"Nome", "Numero di componenti", "Valore totale"};
+        return new String[]{"Nome", "Numero componenti", "Totale"};
     }
 
-    void addComponente(Componenti c, Integer i) throws ErroreMancanoComponenti, ComponenteTerminato {
-        c.modificaQuantita(i);
-        this.listacomponenti.add(new RigaBolla(c, i));
+    public void addComponente(Componenti c, int i) throws ErroreMancanoComponenti {
+        try {
+            c.modificaQuantita(0-i);
+        }
+            catch (ComponenteTerminato componenteTerminato){
+                JOptionPane.showMessageDialog(null,"Hai finito i "+c.getNome());
+                Magazzino.getMagazzino().getComponenti().remove(c);
+            }
+        addRigaBolla(new RigaBolla(c, i));
         this.calcolaValore(c, i);
     }
 
+    private void addRigaBolla(RigaBolla rb){
+        if (listacomponenti.contains(rb))
+        {
+            listacomponenti.get(listacomponenti.indexOf(rb)).addQuantita(rb.getQuantita());
+        }
+        else
+        {
+            listacomponenti.add(rb);
+        }
+    }
+
     private void calcolaValore(Componenti c, int i) {
-        this.valore = this.valore + (c.getPrezzo() * i);
+        this.valore =+ (c.getPrezzo() * i);
     }
 
     public String[] getCampi() {
@@ -47,5 +65,9 @@ public class BollaConsegna implements GenericoElemento {
 
     public List<RigaBolla> getComponenti() {
         return this.listacomponenti;
+    }
+
+    public String getNome() {
+        return String.valueOf(this.nome);
     }
 }

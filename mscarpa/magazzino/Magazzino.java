@@ -57,6 +57,10 @@ public class Magazzino implements Serializable {
         return componenti.getList();
     }
 
+    public Componenti getComponentiWithName(String s){
+        return this.componenti.getWithName(s);
+    }
+
     public Tipo getTIPODIBASE() {
         return this.tipi.Generico();
     }
@@ -76,5 +80,13 @@ public class Magazzino implements Serializable {
 
     public void addBolla(BollaConsegna bollaConsegna) {
         this.pacco.add(bollaConsegna);
+    }
+
+    public void eliminaBolla(BollaConsegna b){
+        this.pacco.remove(b);
+    }
+
+    public BollaConsegna getBollaWithName(String selectedItem) {
+        return this.pacco.getBollaWithName(selectedItem);
     }
 }
