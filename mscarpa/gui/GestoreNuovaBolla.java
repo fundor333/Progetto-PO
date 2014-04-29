@@ -22,11 +22,11 @@ public class GestoreNuovaBolla extends JDialog {
         super(mainFrame, "Nuova Bolla");
         this.bollaConsegna = bolla;
         Magazzino.getMagazzino().addBolla(bollaConsegna);
-        this.tabella = new Tabella<RigaBolla>(bollaConsegna.getComponenti(), RigaBolla.getNomeCampi());
+        this.tabella = new Tabella<RigaBolla>(bollaConsegna.getComponenti(), RigaBolla.getNomeCampi(),1000,200);
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
-        setSize(700, 320);
+        setSize(1100, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
     }
@@ -56,7 +56,7 @@ public class GestoreNuovaBolla extends JDialog {
         tabella.aggiorna(bollaConsegna.getComponenti());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
-        setSize(701, 320);
-        setSize(700, 320);//Non togliere perchè altrimenti non si aggiorna la finestra
+        setSize(1101, 300);
+        setSize(1100, 300);//Non togliere perchè altrimenti non si aggiorna la finestra
     }
 }

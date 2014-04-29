@@ -19,11 +19,11 @@ public class GestoreComponenti extends JDialog {
 
     public GestoreComponenti(JFrame mainFrame) {
         super(mainFrame, "Magazzino");
-        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), Componenti.getNomeCampi());
+        this.tabella = new Tabella<Componenti>(magazzino.getComponenti(), Componenti.getNomeCampi(),500,200);
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
-        setSize(700, 320);
+        setSize(600, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
     }
@@ -53,7 +53,7 @@ public class GestoreComponenti extends JDialog {
         tabella.aggiorna(magazzino.getComponenti());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
-        setSize(701, 320);
-        setSize(700, 320);//Non togliere perchè altrimenti non si aggiorna la finestra
+        setSize(601, 300);
+        setSize(600, 300);//Non togliere perchè altrimenti non si aggiorna la finestra
     }
 }

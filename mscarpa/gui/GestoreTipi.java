@@ -22,11 +22,11 @@ public class GestoreTipi extends JDialog {
         super(mainFrame, "Tipi di componenti");
         try {
             GenericoElemento g = new Tipo("nome", "generico testo", magazzino.getTIPODIBASE());
-            this.tabella = new Tabella<Tipo>(magazzino.getTipi(), Tipo.getNomeCampi());
+            this.tabella = new Tabella<Tipo>(magazzino.getTipi(), Tipo.getNomeCampi(),700,200);
             pulsanti();
             refreshTable();
             add(setPulsanti, BorderLayout.SOUTH);
-            setSize(700, 320);
+            setSize(800, 300);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             setModal(true);
             setVisible(false);
@@ -70,7 +70,7 @@ public class GestoreTipi extends JDialog {
         tabella.aggiorna(magazzino.getTipi());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
-        setSize(701, 320);
-        setSize(700, 320);//Non togliere perchè altrimenti non si aggiorna la finestra
+        setSize(801, 300);
+        setSize(800, 300);//Non togliere perchè altrimenti non si aggiorna la finestra
     }
 }

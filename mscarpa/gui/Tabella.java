@@ -10,9 +10,13 @@ import java.util.List;
 public class Tabella<E extends GenericoElemento> extends JPanel {
     private JTable matrice;
     private String[] etichette;
+    private int larghezza;
+    private int lunghezza;
 
-    public Tabella(List<E> elementi, String[] etichette) {
+    public Tabella(List<E> elementi, String[] etichette,int larghezza, int lunghezza) {
         this.etichette = etichette;
+        this.larghezza=larghezza;
+        this.lunghezza=lunghezza;
         inizializza(elementi);
     }
 
@@ -48,7 +52,8 @@ public class Tabella<E extends GenericoElemento> extends JPanel {
             }
         };
         matrice.setLayout(new BorderLayout());
-        matrice.setPreferredScrollableViewportSize(new Dimension(900, 200));
+        //TODO Trovare un sistema per ridimensionare in modo dinamico la tabella
+        matrice.setPreferredScrollableViewportSize(new Dimension(larghezza, lunghezza));
         matrice.setFillsViewportHeight(true);
         matrice.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         super.add(matrice.getTableHeader(), BorderLayout.PAGE_START);

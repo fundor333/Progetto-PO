@@ -17,11 +17,11 @@ public class ArchivioBolle extends JDialog {
 
     public ArchivioBolle(JFrame mainFrame) {
         super(mainFrame, "Gestore Bolle");
-        this.tabella = new Tabella<BollaConsegna>(magazzino.getBolla(), BollaConsegna.getNomeCampi());
+        this.tabella = new Tabella<BollaConsegna>(magazzino.getBolla(), BollaConsegna.getNomeCampi(),400,200);
         pulsanti();
         refreshTable();
         add(setPulsanti, BorderLayout.SOUTH);
-        setSize(700, 320);
+        setSize(500, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setModal(true);
     }
@@ -52,7 +52,7 @@ public class ArchivioBolle extends JDialog {
         tabella.aggiorna(magazzino.getBolla());
         remove(tabella);
         add(tabella, BorderLayout.CENTER);
-        setSize(701, 320);
-        setSize(700, 320);//Non togliere perchè altrimenti non si aggiorna la finestra
+        setSize(501, 320);
+        setSize(500, 300);//Non togliere perchè altrimenti non si aggiorna la finestra
     }
 }
