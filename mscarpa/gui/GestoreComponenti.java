@@ -14,7 +14,6 @@ public class GestoreComponenti extends JDialog {
     private JPanel setPulsanti = new JPanel();
     private JButton ok = new JButton("Salva");
     private JButton aggiungiElemento = new JButton("Aggiungi elemento");
-    private JButton eliminaElemento = new JButton("Elimina elemento");
     private Magazzino magazzino = Magazzino.getMagazzino();
 
     public GestoreComponenti(JFrame mainFrame) {

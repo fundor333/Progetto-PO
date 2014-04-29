@@ -73,9 +73,8 @@ public class ContenitoreComponenti implements Serializable {
     }
 
     public void cambiaTipo(Tipo tipeWithName) {
-        for (int i=0;i<lista.size();i++)
-        {
-            if(lista.get(i).getTipo().equals(tipeWithName))
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getTipo().equals(tipeWithName))
                 lista.get(i).setTipo(tipeWithName.getPadre());
         }
     }

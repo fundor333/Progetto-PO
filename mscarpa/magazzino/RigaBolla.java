@@ -1,7 +1,5 @@
 package mscarpa.magazzino;
 
-import java.util.HashMap;
-
 public class RigaBolla implements GenericoElemento {
     private Componenti componente;
     private Integer quantita;
@@ -9,6 +7,11 @@ public class RigaBolla implements GenericoElemento {
     RigaBolla(Componenti componente, int quantita) {
         this.componente = componente;
         this.quantita = quantita;
+    }
+
+    public static String[] getNomeCampi() {
+        String[] s = new String[]{"Nome", "Codice a Barre", "Caratteristiche", "Posizione", "Rimanenza", "Prezzo", "Tipo", "Numero Componenti"};
+        return s;
     }
 
     public Componenti getComponente() {
@@ -26,11 +29,6 @@ public class RigaBolla implements GenericoElemento {
             s[i] = componente.getCampi()[i];
         }
         s[7] = quantita.toString();
-        return s;
-    }
-
-    public static String[] getNomeCampi() {
-        String[] s=new String[]{"Nome", "Codice a Barre", "Caratteristiche", "Posizione", "Rimanenza", "Prezzo", "Tipo","Numero Componenti"};
         return s;
     }
 
@@ -52,6 +50,6 @@ public class RigaBolla implements GenericoElemento {
     }
 
     public void addQuantita(int quantita) {
-        this.quantita=this.quantita+quantita;
+        this.quantita = this.quantita + quantita;
     }
 }

@@ -22,7 +22,7 @@ public class ContenitoreBolla implements Serializable {
         p.addComponente(c, quantita);
     }
 
-    public void add(BollaConsegna b){
+    public void add(BollaConsegna b) {
         lista.add(b);
     }
 

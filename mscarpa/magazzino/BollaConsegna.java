@@ -16,7 +16,7 @@ public class BollaConsegna implements GenericoElemento {
     public BollaConsegna(long nome) {
         this.valore = 0.0;
         this.nome = nome;
-        listacomponenti=new ArrayList<RigaBolla>();
+        listacomponenti = new ArrayList<RigaBolla>();
     }
 
     public static String[] getNomeCampi() {
@@ -25,29 +25,25 @@ public class BollaConsegna implements GenericoElemento {
 
     public void addComponente(Componenti c, int i) throws ErroreMancanoComponenti {
         try {
-            c.modificaQuantita(0-i);
+            c.modificaQuantita(0 - i);
+        } catch (ComponenteTerminato componenteTerminato) {
+            JOptionPane.showMessageDialog(null, "Hai finito i " + c.getNome());
+            Magazzino.getMagazzino().getComponenti().remove(c);
         }
-            catch (ComponenteTerminato componenteTerminato){
-                JOptionPane.showMessageDialog(null,"Hai finito i "+c.getNome());
-                Magazzino.getMagazzino().getComponenti().remove(c);
-            }
         addRigaBolla(new RigaBolla(c, i));
         this.calcolaValore(c, i);
     }
 
-    private void addRigaBolla(RigaBolla rb){
-        if (listacomponenti.contains(rb))
-        {
+    private void addRigaBolla(RigaBolla rb) {
+        if (listacomponenti.contains(rb)) {
             listacomponenti.get(listacomponenti.indexOf(rb)).addQuantita(rb.getQuantita());
-        }
-        else
-        {
+        } else {
             listacomponenti.add(rb);
         }
     }
 
     private void calcolaValore(Componenti c, int i) {
-        this.valore =+ (c.getPrezzo() * i);
+        this.valore = +(c.getPrezzo() * i);
     }
 
     public String[] getCampi() {
@@ -55,8 +51,7 @@ public class BollaConsegna implements GenericoElemento {
         result[0] = String.valueOf(nome);
         try {
             result[1] = String.valueOf(listacomponenti.size());
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
             result[2] = "0";
         }
         result[2] = String.valueOf(valore);

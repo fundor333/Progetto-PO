@@ -57,7 +57,7 @@ public class Magazzino implements Serializable {
         return componenti.getList();
     }
 
-    public Componenti getComponentiWithName(String s){
+    public Componenti getComponentiWithName(String s) {
         return this.componenti.getWithName(s);
     }
 
@@ -82,7 +82,7 @@ public class Magazzino implements Serializable {
         this.pacco.add(bollaConsegna);
     }
 
-    public void eliminaBolla(BollaConsegna b){
+    public void eliminaBolla(BollaConsegna b) {
         this.pacco.remove(b);
     }
 

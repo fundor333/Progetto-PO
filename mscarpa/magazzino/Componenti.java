@@ -56,6 +56,10 @@ public class Componenti implements GenericoElemento {
         return tipo;
     }
 
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
     private boolean equals(Componenti c) {
         if (c.codiceaBarre == this.codiceaBarre)
             return true;
@@ -84,9 +88,5 @@ public class Componenti implements GenericoElemento {
     public String[] getCampi() {
         String[] s = new String[]{nome, codiceaBarre.toString(), caratteristiche, posizione, quantita.toString(), prezzo.toString(), tipo.getNometipo()};
         return s;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
     }
 }
