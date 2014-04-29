@@ -30,7 +30,7 @@ public class RigaBolla implements GenericoElemento {
     }
 
     public static String[] getNomeCampi() {
-        String[] s=new String[]{"Nome", "Codice a Barre", "Caratteristiche", "Posizione", "Quantità", "Prezzo", "Tipo","Numero Componenti"};
+        String[] s=new String[]{"Nome", "Codice a Barre", "Caratteristiche", "Posizione", "Rimanenza", "Prezzo", "Tipo","Numero Componenti"};
         return s;
     }
 
