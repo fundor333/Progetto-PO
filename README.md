@@ -1,29 +1,6 @@
-# README #
+# Info utili#
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Questo progetto è stato fatto per l'esame di Programmazione ad Oggetti svolto all'Università Ca'Foscari nell'anno accademico 2013-2014 tenuto dal professor Bugliesi e Roncato.
 
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Cosa posso farci con questo progetto? ###
+Studiarlo per capire come si fa un programma in Java ma non puoi spacciarlo per tuo. Se hai qualche dubbio sul progetto puoi contattarmi o scrivere una issue per avere informazioni
