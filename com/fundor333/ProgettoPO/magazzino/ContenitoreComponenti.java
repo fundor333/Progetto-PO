@@ -1,16 +1,27 @@
-package mscarpa.magazzino;
+/*
+ * Copyright (c)
+ * This code was created by f333. It's distributed as
+ * part of the Progetto-PO.
+ *
+ * Progetto-PO is Open Source and distributed under the
+ * GNU General Public License, version 2
+ *
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * File Updated 5/4/2015
+ */
 
-import mscarpa.exception.ComponenteGiaPresente;
-import mscarpa.exception.ComponenteTerminato;
-import mscarpa.exception.ErroreMancanoComponenti;
+package com.fundor333.ProgettoPO.magazzino;
+
+import com.fundor333.ProgettoPO.exception.ComponenteGiaPresente;
+import com.fundor333.ProgettoPO.exception.ComponenteTerminato;
+import com.fundor333.ProgettoPO.exception.ErroreMancanoComponenti;
 
 import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by matteoscarpa on 23/04/14.
- */
+
 public class ContenitoreComponenti implements Serializable {
     private static final ContenitoreComponenti ref = new ContenitoreComponenti();
     private ArrayList<Componenti> lista;
